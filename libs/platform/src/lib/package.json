@@ -1,0 +1,25 @@
+{
+  "name": "@fundamental-ngx/platform",
+  "version": "VERSION_PLACEHOLDER",
+  "schematics": "./schematics/collection.json",
+  "description": "Fundamental Library for Angular - platform",
+  "license": "Apache-2.0",
+  "homepage": "https://sap.github.io/fundamental-ngx/home",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SAP/fundamental-ngx"
+  },
+  "engine": {
+    "node": ">= 10"
+  },
+  "peerDependencies": {
+    "@fundamental-ngx/core": "VERSION_PLACEHOLDER"
+  },
+  "dependencies": {
+    "focus-trap": "FOCUSTRAP_VER_PLACEHOLDER",
+    "@fundamental-ngx/i18n": "VERSION_PLACEHOLDER",
+    "fast-deep-equal": "FAST_DEEP_EQUAL_VER_PLACEHOLDER",
+    "lodash-es": "LODASH_ES_VER_PLACEHOLDER",
+    "tslib": "^2.0.0"
+  }
+}

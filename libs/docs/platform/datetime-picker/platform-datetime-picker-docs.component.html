@@ -1,0 +1,58 @@
+<fd-docs-section-title id="basic" componentName="datetime-picker">Basic Datetime Picker</fd-docs-section-title>
+<description>
+    Basic usage of Datetime Picker without Forms and with options like <code>meridian</code>, <code>allowNull</code>,
+    <code>disabled</code>, pre-populating and changing dates.</description
+>
+<component-example>
+    <fdp-platform-datetime-picker-basic-example></fdp-platform-datetime-picker-basic-example>
+</component-example>
+<code-example [exampleFiles]="datetimePickerBasic"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="reactive" componentName="datetime-picker"
+    >Datetime Picker with Reactive Forms</fd-docs-section-title
+>
+<description>
+    Usage of Datetime Picker with Platform Forms using Reactive Forms. When used with Platform Forms, the Datetime
+    Picker will take 100% of its parent container width depending on the chosen column layout.
+</description>
+<component-example>
+    <fdp-platform-datetime-picker-reactive-example></fdp-platform-datetime-picker-reactive-example>
+</component-example>
+<code-example [exampleFiles]="datetimePickerReactive"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="template" componentName="datetime-picker"
+    >Datetime Picker with Template Forms</fd-docs-section-title
+>
+<description>Usage of Datetime Picker with Platform Forms using Template Forms.</description>
+<component-example>
+    <fdp-platform-datetime-picker-template-example></fdp-platform-datetime-picker-template-example>
+</component-example>
+<code-example [exampleFiles]="datetimePickerTemplate"></code-example>
+
+<separator></separator>
+<fd-docs-section-title id="disable-function" componentName="datetime-picker"
+    >Datetime Picker with <code>[disableFunction]</code></fd-docs-section-title
+>
+<description></description>
+<component-example>
+    <fdp-platform-datetime-picker-disable-function-example></fdp-platform-datetime-picker-disable-function-example>
+</component-example>
+<code-example [exampleFiles]="datetimePickerDisableFunction"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="update-on-blur" componentName="datetime-picker">
+    Date Time picker that updates it's value on blur.
+</fd-docs-section-title>
+<description>
+    Set <code>[processInputOnBlur]="true"</code> in order to move the processing of input value to whenever component
+    loses focus. You may also hit "enter" to apply the value
+</description>
+<component-example>
+    <fdp-platform-datetime-picker-update-on-blur-example></fdp-platform-datetime-picker-update-on-blur-example>
+</component-example>
+<code-example [exampleFiles]="dateTimePickerUpdateOnBlur"></code-example>

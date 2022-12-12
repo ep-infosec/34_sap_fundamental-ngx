@@ -1,0 +1,28 @@
+<div class="fd-product-switch">
+    <fd-popover
+        [placement]="placement"
+        [closeOnEscapeKey]="closeOnEscapeKey"
+        [closeOnOutsideClick]="closeOnOutsideClick"
+        [(isOpen)]="isOpen"
+        (isOpenChange)="isOpenChange.emit($event)"
+        [disabled]="disabled"
+        [triggers]="triggers"
+        [focusTrapped]="false"
+        [focusAutoCapture]="true"
+        [noArrow]="noArrow"
+    >
+        <fd-popover-control>
+            <button
+                fd-button
+                [attr.aria-label]="ariaLabel || ('coreProductSwitch.ariaLabel' | fdTranslate)"
+                [attr.title]="ariaLabel || ('coreProductSwitch.ariaLabel' | fdTranslate)"
+                class="fd-shellbar__button"
+                glyph="grid"
+                fdType="transparent"
+            ></button>
+        </fd-popover-control>
+        <fd-popover-body>
+            <ng-content></ng-content>
+        </fd-popover-body>
+    </fd-popover>
+</div>

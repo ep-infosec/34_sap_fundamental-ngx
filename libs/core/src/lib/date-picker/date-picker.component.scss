@@ -1,0 +1,12 @@
+.fd-date-picker-custom {
+    display: inline-block;
+
+    fd-popover {
+        display: block;
+    }
+
+    fd-calendar {
+        border-radius: 0.25rem;
+        border-radius: var(--sapElement_BorderCornerRadius, 0.25rem);
+    }
+}

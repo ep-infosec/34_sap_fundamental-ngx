@@ -1,0 +1,81 @@
+<fd-dialog class="fdp-table-p13-grouping-dialog">
+    <fd-dialog-header>
+        <ng-template fdTemplate="header">
+            <div fd-bar-left>
+                <fd-bar-element>
+                    <h4 fd-title [headerSize]="4">{{ 'platformTable.P13GroupDialogHeader' | fdTranslate }}</h4>
+                </fd-bar-element>
+            </div>
+            <div fd-bar-right>
+                <fd-bar-element>
+                    <fdp-table-reset-button></fdp-table-reset-button>
+                </fd-bar-element>
+            </div>
+        </ng-template>
+    </fd-dialog-header>
+
+    <fd-dialog-body>
+        <div class="group-row" *ngFor="let rule of rules; let i = index">
+            <fd-select
+                class="group-row__select"
+                [value]="rule.columnKey"
+                (valueChange)="_onRuleColumnKeyChange(rule, $event)"
+                [placeholder]="'platformTable.P13GroupDialogNoneSelectedColumnSelectPlaceholder' | fdTranslate"
+            >
+                <li fd-option *ngFor="let column of columns" [value]="column.key">
+                    {{ column.label }}
+                </li>
+            </fd-select>
+
+            <fd-checkbox
+                class="group-row__checkbox"
+                [ngModel]="rule.showAsColumn"
+                (ngModelChange)="_onRuleShowAsColumnChange(rule, $event)"
+                [label]="'platformTable.P13GroupDialogShowFieldAsColumnCheckboxLabel' | fdTranslate"
+            ></fd-checkbox>
+
+            <div class="group-row__actions">
+                <button
+                    fd-button
+                    fdType="transparent"
+                    glyph="sys-cancel"
+                    [attr.aria-label]="'platformTable.P13GroupDialogRemoveGroupBtnTitle' | fdTranslate"
+                    [title]="'platformTable.P13GroupDialogRemoveGroupBtnTitle' | fdTranslate"
+                    (click)="_removeRule(rule)"
+                ></button>
+
+                <button
+                    fd-button
+                    fdType="transparent"
+                    glyph="add"
+                    [attr.aria-label]="'platformTable.P13GroupDialogAddNewGroupBtnTitle' | fdTranslate"
+                    [title]="'platformTable.P13GroupDialogAddNewGroupBtnTitle' | fdTranslate"
+                    (click)="_addNew(i)"
+                ></button>
+            </div>
+        </div>
+    </fd-dialog-body>
+
+    <fd-dialog-footer>
+        <fd-dialog-footer-button>
+            <button
+                fd-button
+                fdType="emphasized"
+                fd-dialog-decisive-button
+                [label]="'platformTable.P13GroupDialogConfirmationBtnLabel' | fdTranslate"
+                (click)="confirm()"
+            ></button>
+        </fd-dialog-footer-button>
+
+        <fd-dialog-footer-button>
+            <button
+                fd-button
+                fdType="transparent"
+                fd-dialog-decisive-button
+                fd-initial-focus
+                [label]="'platformTable.P13GroupDialogCancelBtnLabel' | fdTranslate"
+                (click)="cancel()"
+            ></button>
+        </fd-dialog-footer-button>
+    </fd-dialog-footer>
+</fd-dialog>

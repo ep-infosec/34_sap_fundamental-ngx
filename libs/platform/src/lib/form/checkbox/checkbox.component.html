@@ -1,0 +1,22 @@
+<div fd-form-item>
+    <fd-checkbox
+        [inputId]="id"
+        [name]="name"
+        [disabled]="disabled"
+        [label]="label"
+        [tristate]="tristate"
+        [values]="values"
+        [tristateSelectable]="tristateSelectable"
+        [state]="state"
+        [title]="title"
+        [required]="required"
+        [ariaLabel]="ariaLabel || null"
+        [ariaLabelledBy]="ariaLabelledBy"
+        [ariaDescribedBy]="ariaDescribedBy"
+        [ngModel]="value"
+        (ngModelChange)="onModelChange($event)"
+        (focusChange)="_onFocusChanged($event)"
+    >
+        <ng-content></ng-content>
+    </fd-checkbox>
+</div>

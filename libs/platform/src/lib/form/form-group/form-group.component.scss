@@ -1,0 +1,14 @@
+@import 'fundamental-styles/dist/form-layout-grid';
+@import 'fundamental-styles/dist/section';
+@import 'fundamental-styles/dist/form-group';
+@import 'fundamental-styles/dist/form-header';
+
+fdp-form-group {
+    // resize observer won't work with inline elements
+    display: block;
+}
+
+// revert core styles overriding the form label styles
+.fd-form-label {
+    overflow: hidden;
+}

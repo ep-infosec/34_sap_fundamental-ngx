@@ -1,0 +1,13 @@
+export const classAttribute = 'class';
+export const disabledAttribute = 'aria-disabled';
+export const activeClass = 'is-active';
+export const customYearLabel = 'Year';
+export const customYearRangeLabel = 'Aggr. Year.';
+export const landscapeAttribute = 'landscape';
+export const portraitAttribute = 'portrait';
+export const compactAttribute = 'compact';
+export const mondayStartDate = 'Mon';
+export const currentDayClass = 'current';
+export const otherMonth = 'fd-calendar__item--other-month';
+export const currentItem = 'fd-calendar__item--current';
+export const activeItem = 'is-active';

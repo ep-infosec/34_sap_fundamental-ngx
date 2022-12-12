@@ -1,0 +1,11 @@
+<ng-container [formGroup]="form">
+    <ng-container [formGroupName]="formGroupName">
+        <fdp-checkbox-group
+            [isInline]="formItem.guiOptions?.inline || false"
+            [inlineLayout]="formItem.guiOptions?.inlineLayout"
+            [name]="name"
+            [list]="choices"
+            [formControlName]="name"
+        ></fdp-checkbox-group>
+    </ng-container>
+</ng-container>

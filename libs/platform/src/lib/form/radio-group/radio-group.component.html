@@ -1,0 +1,56 @@
+<fd-form-group
+    [isInline]="isInline"
+    role="radiogroup"
+    [attr.aria-label]="ariaLabel"
+    [attr.aria-labelledby]="ariaLabelledBy"
+    [attr.aria-orientation]="isInline ? 'horizontal' : 'vertical'"
+    [attr.aria-required]="required"
+>
+    <ng-container *ngIf="!list">
+        <ng-container *ngFor="let radio of contentRadioButtons">
+            <div fd-form-item>
+                <ng-container
+                    *ngTemplateOutlet="
+                        radio?.renderer || null;
+                        context: {
+                            name: name,
+                            value: radio.value,
+                            state: state,
+                            disabled: disabled || radio.disabled,
+                            ariaLabel: radio.ariaLabel,
+                            ariaLabelledBy: radio.ariaLabelledBy,
+                            ariaDescribedBy: radio.ariaDescribedBy,
+                            title: radio.title
+                        }
+                    "
+                ></ng-container>
+            </div>
+        </ng-container>
+    </ng-container>
+    <ng-container *ngIf="list">
+        <ng-container *ngTemplateOutlet="listvalues"></ng-container>
+    </ng-container>
+</fd-form-group>
+
+<ng-template #listvalues>
+    <ng-container *ngIf="hasNoValue">
+        <div fd-form-item>
+            <fdp-radio-button [name]="name" value="None" [state]="state" [disabled]="disabled" [forceRender]="true">
+                {{ noValueLabel }}
+            </fdp-radio-button>
+        </div>
+    </ng-container>
+    <ng-container *ngFor="let item of list">
+        <div fd-form-item>
+            <fdp-radio-button
+                [name]="name"
+                [value]="lookupValue(item)"
+                [state]="state"
+                [disabled]="_getListItemDisabledValue(item)"
+                [forceRender]="true"
+            >
+                {{ getDisplayValue(item) }}
+            </fdp-radio-button>
+        </div>
+    </ng-container>
+</ng-template>

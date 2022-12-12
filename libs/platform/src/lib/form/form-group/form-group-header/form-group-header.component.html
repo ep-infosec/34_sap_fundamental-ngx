@@ -1,0 +1,25 @@
+<ng-container *ngIf="fieldGroup && hintOptions?.position === 'before'">
+    <ng-container *ngTemplateOutlet="inlineHelpRef"></ng-container>
+</ng-container>
+
+<h6 class="fd-form-group__header-text">
+    {{ fieldGroup?.label }}
+</h6>
+
+<ng-container *ngIf="fieldGroup && hintOptions?.position === 'after'">
+    <ng-container *ngTemplateOutlet="inlineHelpRef"></ng-container>
+</ng-container>
+
+<ng-template #inlineHelpRef>
+    <span *ngIf="hintOptions" fd-link [undecorated]="true">
+        <fd-icon
+            [style.vertical-align]="'middle'"
+            [ariaLabel]="hintOptions.text"
+            [fd-inline-help]="hintOptions.text"
+            [glyph]="hintOptions.glyph"
+            [placement]="hintOptions.placement || null"
+            [triggers]="hintOptions.trigger || []"
+            tabindex="0"
+        ></fd-icon>
+    </span>
+</ng-template>

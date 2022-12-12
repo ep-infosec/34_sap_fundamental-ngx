@@ -1,0 +1,75 @@
+<fd-form-input-message-group>
+    <div
+        class="fd-step-input"
+        [class]="state ? 'is-' + state : ''"
+        [class.is-focus]="focused"
+        [class.is-readonly]="readonly"
+        [class.is-disabled]="disabled"
+        [class.fd-step-input--compact]="_contentDensityObserver.isCompact"
+        [class.fd-step-input--without-buttons]="!hasStepButtons"
+    >
+        <button
+            *ngIf="hasStepButtons"
+            fd-button
+            #decrementBtn
+            fdType="transparent"
+            class="fd-step-input__button"
+            tabindex="-1"
+            type="button"
+            [disabled]="!canDecrement"
+            [title]="decrementButtonTitle || ('coreStepInput.decrementButtonTitle' | fdTranslate)"
+            [glyph]="decrementButtonIcon"
+            (blur)="onTouched()"
+            [attr.aria-label]="decrementButtonTitle || ('coreStepInput.decrementButtonTitle' | fdTranslate)"
+            [attr.aria-controls]="inputId"
+        ></button>
+        <input
+            #inputElement
+            [name]="name"
+            [id]="inputId"
+            [title]="inputTitle"
+            [disabled]="disabled"
+            [readOnly]="readonly"
+            [placeholder]="placeholder"
+            [class.fd-input--compact]="_contentDensityObserver.isCompact"
+            [attr.aria-label]="ariaLabel"
+            [attr.aria-labelledby]="ariaLabelledBy"
+            [attr.aria-valuenow]="value"
+            [attr.aria-valuemax]="max"
+            [attr.aria-valuemin]="min"
+            [attr.aria-describedby]="canDisplayLabel ? inputId + '__description' : ''"
+            [attr.aria-required]="required"
+            [attr.aria-roledescription]="ariaRoleDescription || ('coreStepInput.ariaRoleDescription' | fdTranslate)"
+            (focusin)="handleFocusIn()"
+            (wheel)="handleScroll($event)"
+            (keydown)="handleKeyDown($event)"
+            (input)="trackInputValue($event)"
+            (change)="updateOnInputChanged()"
+            [style.textAlign]="textAlign"
+            class="fd-input fd-input--no-number-spinner fd-step-input__input"
+            type="text"
+            inputmode="numeric"
+        />
+        <button
+            *ngIf="hasStepButtons"
+            fd-button
+            #incrementBtn
+            fdType="transparent"
+            class="fd-step-input__button"
+            tabindex="-1"
+            type="button"
+            [disabled]="!canIncrement"
+            [title]="incrementButtonTitle || ('coreStepInput.incrementButtonTitle' | fdTranslate)"
+            [glyph]="incrementButtonIcon"
+            (blur)="onTouched()"
+            [attr.aria-label]="incrementButtonTitle || ('coreStepInput.incrementButtonTitle' | fdTranslate)"
+            [attr.aria-controls]="inputId"
+        ></button>
+    </div>
+
+    <fd-form-message *ngIf="!!stateMessage" [type]="state" [innerHTML]="stateMessage"></fd-form-message>
+</fd-form-input-message-group>
+
+<span *ngIf="canDisplayLabel" [id]="inputId + '__description'" class="fd-form-label fd-form-label--unit-description">
+    {{ unit || currencySign }}
+</span>

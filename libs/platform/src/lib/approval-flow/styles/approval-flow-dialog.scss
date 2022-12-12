@@ -1,0 +1,107 @@
+$block: fdp-approval-flow-dialog;
+
+@mixin fd-rtl {
+    @at-root {
+        [dir='rtl'] &,
+        &[dir='rtl'] {
+            @content;
+        }
+    }
+}
+
+.#{$block} {
+    a {
+        color: #0a6ed1;
+        color: var(--sapLinkColor, #0a6ed1);
+    }
+
+    .fd-list--byline .fd-list__byline-left {
+        width: 100%;
+    }
+
+    fd-popover {
+        width: 100%;
+    }
+
+    fd-dialog {
+        fd-dialog-header {
+            margin-bottom: 1rem;
+
+            .fd-bar--header {
+                flex-direction: column;
+                padding-bottom: 1rem;
+            }
+
+            p {
+                font-size: 1rem;
+                margin: 0.65rem 0;
+
+                fd-icon {
+                    font-size: 0.875rem;
+                    color: #0854a0;
+                    color: var(--sapButton_IconColor, #0854a0);
+                    position: relative;
+                    cursor: pointer;
+                    margin-right: 0.75rem;
+                }
+            }
+
+            &.show-search {
+                margin-bottom: 0;
+
+                .fd-bar--header {
+                    min-height: 2.5rem;
+                    height: auto;
+                }
+            }
+        }
+
+        fd-avatar {
+            margin-right: 0.652rem;
+        }
+
+        fd-dialog-body {
+            padding: 1rem;
+
+            fdp-list {
+                display: block;
+                margin-left: -1rem;
+                margin-right: -1rem;
+            }
+        }
+
+        fdp-standard-list-item {
+            .fd-checkbox__label {
+                position: relative;
+                left: 0.3125rem;
+            }
+
+            fd-avatar {
+                margin-left: 0.1875rem;
+            }
+        }
+    }
+
+    .fd-form-item {
+        margin-bottom: 1rem;
+    }
+
+    @include fd-rtl() {
+        fd-dialog-header p fd-icon {
+            margin-right: 0;
+            margin-left: 0.75rem;
+        }
+
+        fd-avatar {
+            margin-right: 0;
+            margin-left: 0.652rem;
+        }
+
+        fdp-standard-list-item {
+            .fd-checkbox__label {
+                left: auto;
+                right: 0.3125rem;
+            }
+        }
+    }
+}

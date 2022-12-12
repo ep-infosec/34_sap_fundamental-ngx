@@ -1,0 +1,39 @@
+@import 'fundamental-styles/dist/tokenizer';
+
+.fd-tokenizer .fd-token {
+    max-width: inherit;
+}
+
+input {
+    &.fd-input {
+        &.fd-tokenizer__input {
+            background-color: transparent;
+            margin-right: 1px; // needed to display the right side tokenizer outline
+            border: none;
+            outline: none;
+        }
+    }
+}
+
+.fd-tokenizer-more {
+    padding-right: 0.5rem;
+    [dir='rtl'] &,
+    &[dir='rtl'] {
+        padding-left: 0.5rem;
+        padding-right: 0;
+    }
+}
+
+.fd-input-group__addon--button .fd-input-group__button {
+    &.fd-tokenizer-addon {
+        height: 2.25rem;
+    }
+    &.fd-tokenizer-addon--compact {
+        height: 1.625rem;
+    }
+}
+
+.fd-tokenizer__overflow-list-item {
+    display: flex;
+    justify-content: space-between;
+}

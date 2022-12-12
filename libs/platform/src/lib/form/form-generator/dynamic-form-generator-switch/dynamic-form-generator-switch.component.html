@@ -1,0 +1,9 @@
+<ng-container [formGroup]="form">
+    <ng-container [formGroupName]="formGroupName">
+        <fdp-switch
+            [name]="name"
+            [semantic]="formItem.guiOptions?.additionalData?.semantic"
+            [formControlName]="name"
+        ></fdp-switch>
+    </ng-container>
+</ng-container>

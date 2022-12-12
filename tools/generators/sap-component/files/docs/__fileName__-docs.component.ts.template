@@ -1,0 +1,13 @@
+import { Component } from '@angular/core';
+import { ExampleFile, getExampleFile } from '@fundamental-ngx/docs/shared';
+
+@Component({
+    selector: 'app-<%= fileName %>',
+    templateUrl: './<%= fileName %>-docs.component.html'
+})
+export class <%= className %>DocsComponent {
+    <%= propertyName %>DefaultExample: ExampleFile[] = [
+        getExampleFile('default/<%= fileName %>-default-example.component.html'),
+        getExampleFile('default/<%= fileName %>-default-example.component.ts')
+    ];
+}

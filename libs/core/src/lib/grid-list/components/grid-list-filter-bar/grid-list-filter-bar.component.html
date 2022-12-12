@@ -1,0 +1,17 @@
+<fd-toolbar
+    fdType="info"
+    [active]="true"
+    [tabindex]="0"
+    class="fd-grid-list__filter"
+    [attr.aria-label]="'coreGridList.filterBarCancelButtonTitle' | fdTranslate"
+    (click)="close.emit()"
+    (keydown.space)="$event.preventDefault()"
+    (keyup.space)="close.emit()"
+    (keydown.enter)="close.emit()"
+>
+    <ng-content></ng-content>
+
+    <fd-toolbar-spacer></fd-toolbar-spacer>
+
+    <fd-icon glyph="decline"></fd-icon>
+</fd-toolbar>

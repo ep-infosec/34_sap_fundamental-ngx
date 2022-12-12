@@ -1,0 +1,18 @@
+$block: fdp-approval-flow-user-details;
+
+.#{$block} {
+    &__user-info {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    &__name {
+        font-size: 1rem;
+    }
+
+    &__description {
+        color: #6a6d70;
+        color: var(--sapContent_LabelColor, #6a6d70);
+    }
+}

@@ -1,0 +1,85 @@
+<div class="sidebar" [class.sidebar-collapsed]="sideCollapsed | async">
+    <div class="fd-docs-search">
+        <fd-input-group
+            glyph="decline"
+            glyphAriaLabel="Clear"
+            placeholder="Search"
+            buttonType="transparent"
+            [button]="true"
+            [disabled]="false"
+            [ngModel]="search"
+            (ngModelChange)="onSearchChange($event)"
+            (addOnButtonClicked)="onSearchChange('')"
+        >
+        </fd-input-group>
+    </div>
+    <div class="fd-docs-sidebar-content">
+        <fd-side-nav>
+            <div fd-side-nav-main>
+                <ul fd-nested-list [textOnly]="true">
+                    <li
+                        fd-nested-list-item
+                        *ngFor="let section of displayedSections; trackBy: trackBySection"
+                        [expanded]="true"
+                    >
+                        <div fd-nested-list-content>
+                            <a fd-nested-list-link>
+                                <span fd-nested-list-title>{{ section.header }}</span>
+                            </a>
+                            <button fd-nested-list-expand-icon></button>
+                        </div>
+                        <ul fd-nested-list>
+                            <ng-container
+                                *ngFor="
+                                    let item of $asSectionNestedContent(section.content) | sortBy: true:'name';
+                                    trackBy: trackBySectionContent
+                                "
+                            >
+                                <ng-container *ngIf="item.subItems as itemSubItems; else rootListItem">
+                                    <li fd-nested-list-item [expanded]="true">
+                                        <div fd-nested-list-content>
+                                            <a fd-nested-list-link>
+                                                <span fd-nested-list-title>{{ item.name }}</span>
+                                            </a>
+                                            <button fd-nested-list-expand-icon></button>
+                                        </div>
+                                        <ul fd-nested-list>
+                                            <ng-container
+                                                *ngFor="let subItem of itemSubItems; trackBy: trackBySectionContent"
+                                                [ngTemplateOutlet]="listItemTpl"
+                                                [ngTemplateOutletContext]="{ $implicit: subItem }"
+                                            >
+                                            </ng-container>
+                                        </ul>
+                                    </li>
+                                </ng-container>
+                                <ng-template #rootListItem>
+                                    <ng-template
+                                        [ngTemplateOutlet]="listItemTpl"
+                                        [ngTemplateOutletContext]="{ $implicit: item }"
+                                    >
+                                    </ng-template>
+                                </ng-template>
+                            </ng-container>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </fd-side-nav>
+    </div>
+</div>
+
+<ng-template #listItemTpl let-item>
+    <li fd-nested-list-item>
+        <a
+            fd-nested-list-link
+            [routerLink]="'/' + item.url"
+            routerLinkActive="is-selected"
+            (keypress)="onKeypressHandler($event)"
+            tabindex="0"
+            role="button"
+        >
+            <span fd-nested-list-title>{{ item.name }}</span>
+        </a>
+    </li>
+</ng-template>

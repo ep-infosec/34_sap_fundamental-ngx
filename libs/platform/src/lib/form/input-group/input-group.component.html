@@ -1,0 +1,29 @@
+<div class="fd-input-group" [class.is-disabled]="disabled" [class]="_controlStateClass">
+    <!-- Before input addons area -->
+    <fdp-input-group-addon-body *ngFor="let addon of _beforeInputAddons">
+        <ng-container *ngTemplateOutlet="addon.contentTemplateRef"></ng-container>
+    </fdp-input-group-addon-body>
+
+    <!-- Input -->
+    <ng-container *ngIf="_input">
+        <fdp-input
+            [name]="name"
+            [id]="id"
+            [placeholder]="placeholder"
+            [type]="_input.type"
+            [disabled]="disabled"
+            [value]="value"
+            [ariaLabel]="ariaLabel"
+            [ariaLabelledBy]="ariaLabelledBy"
+            [required]="required"
+            (input)="_onChangeInputValue($any($event.target)?.value)"
+            (focusChange)="_onFocusChanged($event)"
+            (keypress)="_onKeyPress($event)"
+        ></fdp-input>
+    </ng-container>
+
+    <!-- After input addons area -->
+    <fdp-input-group-addon-body *ngFor="let addon of _afterInputAddons" [hasButton]="!!addon.button">
+        <ng-container *ngTemplateOutlet="addon.contentTemplateRef"></ng-container>
+    </fdp-input-group-addon-body>
+</div>

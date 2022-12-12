@@ -1,0 +1,19 @@
+.docs-header-link {
+    color: var(--sapPageHeader_TextColor);
+    position: relative;
+    padding-top: 2rem;
+    margin-top: 0;
+}
+
+.docs-header-link .docs-markdown-a {
+    visibility: hidden;
+    text-align: center;
+    text-decoration: none;
+    margin-left: -25px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.docs-header-link:hover .docs-markdown-a {
+    visibility: visible;
+}

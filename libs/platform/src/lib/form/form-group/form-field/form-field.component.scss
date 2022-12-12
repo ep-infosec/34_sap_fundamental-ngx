@@ -1,0 +1,12 @@
+.fd-form-label__wrapper {
+    display: flex;
+    width: 100%;
+    white-space: nowrap;
+}
+.fd-form-field-inline-help-container {
+    overflow: visible !important;
+
+    [class*='sap-icon'] {
+        margin: 0;
+    }
+}

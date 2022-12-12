@@ -1,0 +1,44 @@
+<input
+    #inputElement
+    type="checkbox"
+    class="fd-checkbox"
+    [id]="inputId"
+    [name]="name"
+    [disabled]="disabled"
+    [indeterminate]="isIndeterminate"
+    [checked]="isChecked"
+    [attr.tabindex]="tabIndexValue"
+    [attr.aria-label]="ariaLabel"
+    [attr.aria-labelledby]="ariaLabelledBy"
+    [attr.aria-describedby]="ariaDescribedBy"
+    [attr.aria-disabled]="disabled"
+    [attr.aria-required]="required"
+    [class]="state ? 'is-' + state : ''"
+    (click)="_onInputClick($event)"
+    (blur)="_onBlur()"
+    (focus)="_onFocus()"
+/>
+
+<label
+    class="fd-checkbox__label"
+    #labelElement
+    [for]="inputId"
+    [class]="labelClass"
+    [attr.title]="title"
+    [class.fd-checkbox__label--required]="required"
+    (click)="_onLabelClick($event)"
+>
+    <div class="fd-checkbox__label-container">
+        <ng-container *ngIf="label">
+            <span class="fd-checkbox__text">
+                {{ label }}
+            </span>
+        </ng-container>
+
+        <ng-container *ngIf="!label">
+            <span class="fd-checkbox__text">
+                <ng-content></ng-content>
+            </span>
+        </ng-container>
+    </div>
+</label>

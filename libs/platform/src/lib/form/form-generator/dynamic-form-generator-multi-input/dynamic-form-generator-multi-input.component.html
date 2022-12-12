@@ -1,0 +1,15 @@
+<ng-container [formGroup]="form">
+    <ng-container [formGroupName]="formGroupName">
+        <fdp-multi-input
+            [formControlName]="name"
+            [placeholder]="placeholder"
+            type="text"
+            [name]="name"
+            [dataSource]="choices"
+            displayKey="label"
+            lookupKey="label"
+            [autofocus]="true"
+        >
+        </fdp-multi-input>
+    </ng-container>
+</ng-container>

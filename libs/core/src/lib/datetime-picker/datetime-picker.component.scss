@@ -1,0 +1,51 @@
+.fd-datetime {
+    display: block;
+
+    &__wrapper {
+        max-height: 80vh;
+        max-width: 80vw;
+    }
+
+    &__container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 16px;
+        overflow: auto;
+    }
+
+    &__separator {
+        background-color: lightgrey;
+        width: 1px;
+        margin: 42px 28px;
+        align-self: stretch;
+    }
+
+    fd-time {
+        width: auto;
+    }
+
+    &__display-type-switcher {
+        margin-top: 1rem;
+        display: none;
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 960px) {
+    .fd-datetime {
+        &__display-type-switcher {
+            display: flex;
+        }
+
+        &__wrapper {
+            min-width: min(20rem, 90vw);
+        }
+
+        &__container > *:not(.fd-datetime__active-display-type) {
+            // show only active control element in mobile mode
+            display: none;
+        }
+    }
+}

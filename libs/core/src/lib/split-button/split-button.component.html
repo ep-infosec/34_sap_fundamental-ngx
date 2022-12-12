@@ -1,0 +1,35 @@
+<div
+    class="fd-button-split fd-has-margin-right-small"
+    [ngClass]="typeClass"
+    role="group"
+    tabindex="-1"
+    [attr.aria-label]="arialLabel || ('coreSplitButton.arialLabel' | fdTranslate)"
+    [fdMenuTrigger]="menu"
+    (focus)="_onGroupFocused()"
+>
+    <button
+        fd-button
+        #mainActionButton
+        [label]="mainActionTitle"
+        [style.width]="mainButtonWidth"
+        [fdType]="fdType"
+        [disabled]="disabled"
+        (click)="onMainButtonClick($event)"
+    >
+        <ng-container *ngTemplateOutlet="titleTemplate"></ng-container>
+    </button>
+
+    <button
+        fd-button
+        #menuActionButton
+        [glyph]="glyph"
+        [fdType]="fdType"
+        [disabled]="disabled"
+        [ariaLabel]="expandButtonAriaLabel || ('coreSplitButton.expandButtonAriaLabel' | fdTranslate)"
+        [attr.title]="
+            expandButtonTitle || expandButtonAriaLabel || ('coreSplitButton.expandButtonAriaLabel' | fdTranslate)
+        "
+        [class.is-active]="menu.isOpen"
+    ></button>
+    <ng-content select="fd-menu"></ng-content>
+</div>

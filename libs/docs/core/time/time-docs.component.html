@@ -1,0 +1,109 @@
+<fd-docs-section-title id="default" componentName="time"> 24-Hour Clock </fd-docs-section-title>
+<description>This is the default clock setting.</description>
+<component-example>
+    <fd-time-example></fd-time-example>
+</component-example>
+<code-example [exampleFiles]="timeBasic"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="12-hour-clock" componentName="time"> 12-Hour Clock </fd-docs-section-title>
+<description>
+    You can use a Meridian 12-hour clock by setting <code>[meridian]="true"</code>. The passed time object will still
+    contain a 24-hour clock.
+</description>
+<component-example>
+    <fd-time-12-example></fd-time-12-example>
+</component-example>
+<code-example [exampleFiles]="timeMeridian"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="no-spinners" componentName="time"> No Spinners </fd-docs-section-title>
+<description>
+    For mobile, or tablet devices spinners should be removed from time component. It can be done by passing
+    <code>[spinnerButtons]="false"</code>.
+</description>
+<component-example>
+    <fd-time-no-spinners-example></fd-time-no-spinners-example>
+</component-example>
+<code-example [exampleFiles]="timeNoSpinners"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="sizes" componentName="time"> Sizes </fd-docs-section-title>
+<description>
+    You can change size of time component by passing
+    <ul>
+        <li><code>fdCompact</code>, which is dedicated for desktop devices and makes time items smaller.</li>
+        <li><code>[tablet]="true"</code>, which is dedicated for tablets and changes container spacing.</li>
+    </ul>
+</description>
+<component-example>
+    <fd-time-sizes-example></fd-time-sizes-example>
+</component-example>
+<code-example [exampleFiles]="timeSizes"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="programmatic-time-change" componentName="time">
+    Programmatically Changed Time
+</fd-docs-section-title>
+<description>
+    Makes it possible to programmatically change the value of the currently selected time. By programmatically changing
+    the value of this property, the time that is highlighted on the calendar will change accordingly.
+</description>
+<component-example>
+    <fd-time-programmatically-example></fd-time-programmatically-example>
+</component-example>
+<code-example [exampleFiles]="timeProgramaticalyChange"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="clock-without-seconds" componentName="time"> Clock Without Seconds </fd-docs-section-title>
+<description>Use <code>[displaySeconds]="false"</code> to hide the seconds column.</description>
+<component-example>
+    <fd-time-no-seconds-example></fd-time-no-seconds-example>
+</component-example>
+<code-example [exampleFiles]="timeNoSeconds"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="clock-without-minutes-seconds" componentName="time">
+    Clock Without Minutes and Seconds
+</fd-docs-section-title>
+<description>
+    Use <code>[displaySeconds]="false"</code>, <code>[displayMinutes]="false"</code> or
+    <code>[displayHours]="false"</code>
+    to turn off seconds, minutes or hours for the time picker. At least one of them should be enabled.
+</description>
+<component-example>
+    <fd-time-only-hours-example></fd-time-only-hours-example>
+</component-example>
+<code-example [exampleFiles]="timeOnlyHours"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="two-digits" componentName="time"> Time With Two Digits </fd-docs-section-title>
+<description>
+    Add <code>[keepTwoDigits]="true"</code> to always have two digits in hours, minutes and seconds input. It also can
+    be used in <code>TimePicker</code> and <code>DateTimePicker</code> components.
+</description>
+<component-example>
+    <fd-time-two-digits-example></fd-time-two-digits-example>
+</component-example>
+<code-example [exampleFiles]="timeTwoDigits"></code-example>
+
+<separator></separator>
+
+<separator></separator>
+
+<fd-docs-section-title id="reactive-form" componentName="time"> Time in Reactive Form </fd-docs-section-title>
+<description>
+    The time component may also be used within a form. The values within the form may then be accessed through the usual
+    methods used for accessing data within Angular reactive forms.
+</description>
+<component-example>
+    <fd-time-form-example></fd-time-form-example>
+</component-example>
+<code-example [exampleFiles]="timeForm"></code-example>

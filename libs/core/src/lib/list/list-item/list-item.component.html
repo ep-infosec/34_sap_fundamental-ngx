@@ -1,0 +1,21 @@
+<ng-container *ngIf="checkbox || radio">
+    <div fd-form-item class="fd-list__form-item">
+        <ng-content select="fd-checkbox"></ng-content>
+        <ng-content select="fd-radio-button"></ng-content>
+    </div>
+</ng-container>
+
+<ng-content></ng-content>
+
+<span *ngIf="counter || counter === 0" class="fd-list__item-counter">
+    {{ counter | number: '1.0-2' }}
+</span>
+
+<span
+    class="fd-screenreader-only"
+    aria-hidden="true"
+    [id]="_uniqueId + '-screenReader-content'"
+    *ngIf="screenReaderContent"
+>
+    {{ screenReaderContent }}
+</span>

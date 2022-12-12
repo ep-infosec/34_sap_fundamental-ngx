@@ -1,0 +1,18 @@
+<fd-popover
+    (isOpenChange)="openChanged($event)"
+    additionalBodyClass="fd-popover__body--input-message-group"
+    [closeOnOutsideClick]="closeOnOutsideClick"
+    [closeOnEscapeKey]="closeOnEscapeKey"
+    [fillControlMode]="fillControlMode"
+    [isOpen]="isOpen"
+    [placement]="placement"
+    [triggers]="['focusin', 'focusout']"
+    class="fd-form-input-message-group fd-popover--input-message-group"
+>
+    <fd-popover-control>
+        <ng-container *ngTemplateOutlet="triggerItemTemplate"></ng-container>
+    </fd-popover-control>
+    <fd-popover-body>
+        <ng-content></ng-content>
+    </fd-popover-body>
+</fd-popover>

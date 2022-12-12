@@ -1,0 +1,91 @@
+<fd-docs-section-title id="simple" componentName="search-field">Search Field </fd-docs-section-title>
+<description
+    >The data for the typeahead dropdown list can be provided via the <code>suggestions</code> property. Data provided
+    this manner can either be an array of strings or an Observeable with an array of strings as output. Suggestion data
+    will be filtered and highlighted based on the user input.</description
+>
+<description
+    >The Search Field component outputs two types of events: an <code>inputChange</code> event whenever the input text
+    changes, and a <code>searchSubmit</code> event when the user types a keyboard enter or clicks the search icon
+    button.</description
+>
+<description
+    >The placeholder text for the Search Field can be changed with the <code>placeholder</code> property.
+</description>
+<description
+    >The Search field <code>size</code> property can be either <code>cozy</code> or <code>compact</code>
+</description>
+<description
+    >The Search field <code>ariaLabel</code> property can be used to set ARIA attribute to clarify what search field is.
+</description>
+<description
+    >The Search field <code>ariaLabelledBy</code> property can be used to set ARIA attribute with id of elements which
+    labels search input to clarify what search field is.
+</description>
+<description
+    >A refresh button in the search field makes it possible to utilize search and refresh together in one field. If the
+    Refresh button is available, the user can update the list without triggering a new search. This is usually needed
+    when backend data changes quickly and often.
+</description>
+<component-example>
+    <fdp-platform-search-field-basic-example></fdp-platform-search-field-basic-example>
+</component-example>
+<code-example [exampleFiles]="searchFieldBasic"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="categories" componentName="search-field"
+    >Search Field with Categories
+</fd-docs-section-title>
+<description>
+    Categories can be added to the search field by assigning an array of objects to the
+    <code>categories</code> property. Category object consists of <code>value</code> & <code>label</code> strings.
+    Category can be predefined by setting <code>currentCategory</code> input property. The selected category is included
+    in the event data emitted in both the <code>inputChange</code> and <code>searchSubmit</code> events.
+</description>
+
+<component-example>
+    <fdp-platform-search-field-categories-example></fdp-platform-search-field-categories-example>
+</component-example>
+<code-example [exampleFiles]="searchFieldCategories"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="data-source" componentName="search-field"
+    >Search Field with Data Source
+</fd-docs-section-title>
+<description
+    >A dynamic <code>dataSource</code> can be provided to the Search Field as an alternative to the static string array
+    provided via the <code>suggestions</code> property. Use the <code>SearchFieldDataSource</code> class and
+    <code>SearchFieldDataProvider</code> base class to create a data source which can be connected to a back-end
+    service.</description
+>
+
+<component-example>
+    <fdp-platform-search-field-data-source-example></fdp-platform-search-field-data-source-example>
+</component-example>
+<code-example [exampleFiles]="searchFieldDataSource"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="mobile" componentName="search-field"> Search Field Mobile Mode </fd-docs-section-title>
+<description>
+    To use Search-Field in mobile mode:
+    <ul>
+        <li>Set <code>[mobile]</code> property to true</li>
+        <li>
+            Set <code>[mobileConfig]</code> with <code>MobileModeConfig</code> configuration object to customize the
+            look of the control
+        </li>
+    </ul>
+
+    Search-Field Mobile Mode can be configured <strong>globally</strong> by providing
+    <code>MOBILE_MODE_CONFIG</code> token. Check
+    <a routerLink="/core/global-config" fragment="mobile-mode-config">Global Configuration page</a> for more
+    information.
+</description>
+
+<component-example>
+    <fdp-platform-search-field-mobile-example></fdp-platform-search-field-mobile-example>
+</component-example>
+<code-example [exampleFiles]="searchFieldMobileMode"></code-example>

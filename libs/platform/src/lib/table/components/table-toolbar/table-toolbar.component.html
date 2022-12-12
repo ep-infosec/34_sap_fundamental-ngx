@@ -1,0 +1,92 @@
+<ng-template
+    let-counter="counter"
+    let-sortable="sortable"
+    let-filterable="filterable"
+    let-groupable="groupable"
+    let-columns="columns"
+>
+    <fd-toolbar fdType="transparent" [clearBorder]="true" [hasTitle]="!!title">
+        <label fd-toolbar-label [id]="tableToolbarTitleId" [class.fd-toolbar__title]="!!title">
+            {{ title }} <span *ngIf="!hideItemCount">({{ counter }})</span>
+        </label>
+        <fd-toolbar-spacer></fd-toolbar-spacer>
+        <ng-container *ngIf="showExpandCollapseButtons">
+            <fdp-button glyph="expand-all" (click)="_expandAll()"></fdp-button>
+            <fdp-button glyph="collapse-all" (click)="_collapseAll()"></fdp-button>
+        </ng-container>
+        <fdp-search-field
+            *ngIf="!hideSearchInput"
+            style="min-width: 15.5rem"
+            [placeholder]="'platformTable.toolbarSearchPlaceholder' | fdTranslate"
+            [disabled]="!!(tableLoading$ | async)"
+            [suggestions]="searchSuggestions"
+            [ariaLabelledBy]="tableToolbarTitleId"
+            (searchSubmit)="submitSearch($event)"
+            (cancelSearch)="submitSearch($event)"
+        ></fdp-search-field>
+
+        <ng-container *ngIf="editMode !== 'none'">
+            <fdp-button
+                [label]="'platformTable.toolbarActionCreateButtonLabel' | fdTranslate"
+                (click)="_addRow()"
+            ></fdp-button>
+            <ng-container *ngIf="_showSaveButton">
+                <fdp-button
+                    [label]="'platformTable.toolbarActionSaveButtonLabel' | fdTranslate"
+                    *ngIf="_showSaveButton"
+                    (click)="_saveRows()"
+                ></fdp-button>
+                <fd-toolbar-separator fd-toolbar-item></fd-toolbar-separator>
+                <fdp-button
+                    [label]="'platformTable.toolbarActionCancelButtonLabel' | fdTranslate"
+                    (click)="_cancelEditing()"
+                    buttonType="transparent"
+                ></fdp-button>
+            </ng-container>
+            <fd-toolbar-separator
+                fd-toolbar-item
+                *ngIf="tableToolbarActionsComponent || sortable || filterable || groupable || columns"
+            ></fd-toolbar-separator>
+        </ng-container>
+
+        <ng-container *ngIf="tableToolbarActionsComponent">
+            <ng-container *ngTemplateOutlet="tableToolbarActionsComponent.contentTemplateRef"></ng-container>
+        </ng-container>
+
+        <ng-container *ngIf="sortable || filterable || groupable || columns">
+            <fd-toolbar-separator fd-toolbar-item *ngIf="tableToolbarActionsComponent"></fd-toolbar-separator>
+            <fdp-button
+                *ngIf="sortable"
+                glyph="sort"
+                [title]="'platformTable.toolbarActionSortButtonTitle' | fdTranslate"
+                buttonType="transparent"
+                aria-haspopup="modal"
+                (click)="openSorting()"
+            ></fdp-button>
+            <fdp-button
+                *ngIf="filterable"
+                glyph="filter"
+                [title]="'platformTable.toolbarActionFilterButtonTitle' | fdTranslate"
+                buttonType="transparent"
+                aria-haspopup="modal"
+                (click)="openFiltering()"
+            ></fdp-button>
+            <fdp-button
+                *ngIf="groupable"
+                glyph="group-2"
+                [title]="'platformTable.toolbarActionGroupButtonTitle' | fdTranslate"
+                buttonType="transparent"
+                aria-haspopup="modal"
+                (click)="openGrouping()"
+            ></fdp-button>
+            <fdp-button
+                *ngIf="columns"
+                glyph="action-settings"
+                [title]="'platformTable.toolbarActionColumnsButtonTitle' | fdTranslate"
+                buttonType="transparent"
+                aria-haspopup="modal"
+                (click)="openColumns()"
+            ></fdp-button>
+        </ng-container>
+    </fd-toolbar>
+</ng-template>

@@ -1,0 +1,15 @@
+<ng-template #titleTemplate>
+    <h4 fd-title [headerSize]="4">{{ 'platformTable.filterDialogFilterTitle' | fdTranslate }}</h4>
+</ng-template>
+
+<ng-template #bodyTemplate>
+    <ul fd-list [navigationIndicator]="true">
+        <li fd-list-group-header>{{ 'platformTable.filterDialogFilterBy' | fdTranslate }}</li>
+
+        <li fd-list-item *ngFor="let filter of filters">
+            <a fd-list-link (click)="selectFilter.emit(filter)">
+                <span fd-list-title>{{ filter.label }}</span>
+            </a>
+        </li>
+    </ul>
+</ng-template>

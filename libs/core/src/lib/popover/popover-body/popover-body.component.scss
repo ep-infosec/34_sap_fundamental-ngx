@@ -1,0 +1,113 @@
+@import 'fundamental-styles/dist/popover';
+@import '~@angular/cdk/overlay-prebuilt.css';
+
+$block: fd-popover;
+$fd-popover-border-radius: var(--fdPopover_Border_Radius);
+
+@mixin set-list-border-radius($position, $radius: $fd-popover-border-radius) {
+    border-#{$position}-right-radius: $radius;
+    border-#{$position}-left-radius: $radius;
+}
+
+fd-popover-body {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.#{$block} {
+    &-custom {
+        display: inline-block;
+        max-width: 100%;
+
+        &--disabled {
+            .fd-popover__control {
+                cursor: auto;
+            }
+        }
+    }
+
+    &__body {
+        max-height: 100%;
+        max-width: 100%;
+        display: flex;
+
+        &--hidden {
+            display: none !important;
+        }
+
+        > .fd-scrollbar {
+            max-height: 100%;
+            max-width: 100%;
+            width: 100%;
+            border-radius: inherit;
+        }
+
+        .fd-list {
+            border-radius: $fd-popover-border-radius;
+
+            &__item {
+                &:first-child {
+                    @include set-list-border-radius(top);
+                }
+
+                &:last-child {
+                    @include set-list-border-radius(bottom);
+                }
+            }
+        }
+
+        .fd-nested-list {
+            border-bottom: none;
+
+            &__item {
+                &:first-child {
+                    .fd-nested-list__content {
+                        @include set-list-border-radius(top);
+                    }
+                }
+
+                &:last-child {
+                    .fd-nested-list {
+                        &__item:last-child {
+                            .fd-nested-list__link {
+                                @include set-list-border-radius(bottom);
+                            }
+                        }
+
+                        &__content {
+                            @include set-list-border-radius(bottom);
+
+                            &.is-selected {
+                                @include set-list-border-radius(bottom, 0);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .fd-side-nav,
+        .fd-nested-list__item {
+            border-right: none;
+
+            &:first-child {
+                @include set-list-border-radius(top);
+            }
+
+            &:last-child {
+                @include set-list-border-radius(bottom);
+            }
+        }
+    }
+}
+
+.cdk-overlay {
+    &-container {
+        z-index: 1002;
+    }
+
+    &-pane {
+        max-width: 100%;
+        max-height: 100%;
+    }
+}

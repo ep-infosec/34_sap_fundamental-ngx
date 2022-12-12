@@ -1,0 +1,14 @@
+@use '@angular/cdk';
+@import 'fundamental-styles/dist/table';
+
+@include cdk.a11y-visually-hidden();
+
+.fd-table__popover--custom {
+    width: 100%;
+}
+
+.fd-table__cell--checkbox {
+    .fd-checkbox__label {
+        margin: 0;
+    }
+}

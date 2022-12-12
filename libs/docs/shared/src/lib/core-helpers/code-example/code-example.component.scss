@@ -1,0 +1,38 @@
+.docs-html-example-container {
+    position: relative;
+
+    &:hover {
+        .docs-example-copy-button {
+            display: block;
+        }
+    }
+}
+
+.docs-code-example-toolbar {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 4px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+.fd-tabs__panel.is-expanded {
+    width: 100%;
+}
+
+code-example {
+    ul.fd-tabs {
+        margin-bottom: 0;
+        margin-block-end: 0;
+        border-bottom: 1px solid #ccc;
+        background-color: transparent;
+    }
+}
+
+.docs-code-example-content {
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+}

@@ -1,0 +1,8 @@
+@use '@angular/cdk';
+@import '~@fundamental-styles/fn/dist/fn-slider.css';
+
+@include cdk.a11y-visually-hidden();
+
+.fn-slider {
+    display: block;
+}

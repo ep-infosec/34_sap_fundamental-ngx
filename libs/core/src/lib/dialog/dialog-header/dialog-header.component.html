@@ -1,0 +1,25 @@
+<div
+    fd-bar
+    class="fd-dialog__header"
+    [fdCozy]="dialogConfig.mobile"
+    [barDesign]="subHeaderTemplate ? 'header-with-subheader' : 'header'"
+>
+    <ng-container *ngTemplateOutlet="headerTemplate ? headerTemplate : defaultTemplate"></ng-container>
+
+    <ng-template #defaultTemplate>
+        <div fd-bar-left>
+            <fd-bar-element [fullWidth]="true">
+                <ng-content select="[fd-title]"></ng-content>
+            </fd-bar-element>
+        </div>
+        <div fd-bar-right>
+            <fd-bar-element>
+                <ng-content select="[fd-dialog-close-button]"></ng-content>
+            </fd-bar-element>
+        </div>
+    </ng-template>
+</div>
+
+<div fd-bar *ngIf="subHeaderTemplate" class="fd-dialog__subheader" barDesign="subheader" [fdCozy]="dialogConfig.mobile">
+    <ng-container *ngTemplateOutlet="subHeaderTemplate"></ng-container>
+</div>

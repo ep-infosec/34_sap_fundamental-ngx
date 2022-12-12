@@ -1,0 +1,49 @@
+<div>
+    <fd-toolbar [hasTitle]="true" fdType="transparent">
+        <fdp-search-field
+            (inputChange)="_onSearchInputChange($event)"
+            (searchSubmit)="submitForm()"
+            [disableRefresh]="true"
+            [placeholder]="'platformSmartFilterBar.searchPlaceholder' | fdTranslate"
+        ></fdp-search-field>
+        <fd-toolbar-spacer></fd-toolbar-spacer>
+        <fdp-button
+            (click)="submitForm()"
+            buttonType="emphasized"
+            fd-toolbar-item
+            [label]="'platformSmartFilterBar.submitButtonLabel' | fdTranslate"
+        ></fdp-button>
+        <fdp-button (click)="submitForm()" fd-toolbar-item glyph="synchronize"></fdp-button>
+        <fdp-button
+            (click)="showFilteringSettings()"
+            [label]="
+                filtersLabel
+                    ? filtersLabel + ' (' + _selectedFilters.length + ')'
+                    : ('platformSmartFilterBar.filtersButtonLabel'
+                      | fdTranslate: { filtersCount: _selectedFilters.length })
+            "
+            fd-toolbar-item
+        ></fdp-button>
+        <fdp-button
+            (click)="_toggleFilterBar()"
+            [label]="
+                (_showFilterBar
+                    ? 'platformSmartFilterBar.hideFiltersButtonLabel'
+                    : 'platformSmartFilterBar.showFiltersButtonLabel'
+                ) | fdTranslate
+            "
+            buttonType="transparent"
+            fd-toolbar-item
+        ></fdp-button>
+    </fd-toolbar>
+</div>
+
+<div class="fdp-smart-filter-bar__filters" *ngIf="_showFilterBar">
+    <fdp-form-generator
+        (formCreated)="_onFormCreated()"
+        (formSubmitted)="_onFormSubmitted($event)"
+        [noAdditionalContent]="true"
+        [formItems]="_formItems"
+        [columnLayout]="filtersColumnLayout"
+    ></fdp-form-generator>
+</div>

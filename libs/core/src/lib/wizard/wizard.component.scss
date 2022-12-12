@@ -1,0 +1,48 @@
+@import 'fundamental-styles/dist/wizard';
+
+@mixin fd-wizard-responsive-paddings() {
+    @media (max-width: 599px) {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    @media (min-width: 600px) and (max-width: 1439px) {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    @media (min-width: 1440px) {
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+}
+
+$block: 'fd-wizard';
+
+.#{$block} {
+    &__label,
+    &__optional-text {
+        display: block;
+        display: -webkit-box;
+    }
+
+    &-container-wrapper {
+        overflow: auto;
+    }
+
+    &--responsive-paddings {
+        .#{$block} {
+            &__content,
+            &__progress-bar {
+                @include fd-wizard-responsive-paddings();
+            }
+
+            .fd-bar--floating-footer {
+            }
+        }
+    }
+
+    &__progress-bar {
+        z-index: 1003;
+    }
+}

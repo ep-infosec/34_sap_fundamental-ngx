@@ -1,0 +1,54 @@
+$block: fdp-approval-flow-team-list;
+
+@mixin fd-rtl {
+    @at-root {
+        [dir='rtl'] &,
+        &[dir='rtl'] {
+            @content;
+        }
+    }
+}
+
+.#{$block} {
+    .fd-form-item {
+        position: relative;
+        margin-bottom: 0;
+
+        fd-radio-button {
+            position: absolute;
+            z-index: 1;
+            top: 1.4rem;
+        }
+
+        .fd-list__item {
+            padding-left: 2rem !important;
+            cursor: pointer;
+        }
+
+        fd-icon {
+            position: absolute;
+            right: 1rem;
+            top: 2rem;
+            color: #0854a0;
+            color: var(--sapButton_IconColor, #0854a0);
+            cursor: pointer;
+        }
+
+        fd-avatar {
+            color: #fff;
+            color: var(--sapBaseColor, #fff);
+        }
+    }
+
+    @include fd-rtl() {
+        .fd-form-item fd-icon {
+            right: auto;
+            left: 1rem;
+        }
+
+        .fd-list__item {
+            padding-right: 2rem !important;
+            padding-left: 0 !important;
+        }
+    }
+}

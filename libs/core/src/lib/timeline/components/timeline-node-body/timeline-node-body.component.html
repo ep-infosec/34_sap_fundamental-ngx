@@ -1,0 +1,7 @@
+<fd-text
+    [maxLines]="maxLines || 0"
+    [text]="content"
+    [isCollapsed]="!!maxLines"
+    [expandable]="!!maxLines"
+    (isCollapsedChange)="calculatePositions()"
+></fd-text>

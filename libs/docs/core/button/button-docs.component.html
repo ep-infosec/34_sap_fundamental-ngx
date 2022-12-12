@@ -1,0 +1,81 @@
+<fd-docs-section-title id="types" componentName="button"> Button Types </fd-docs-section-title>
+<description>
+    The button component follows fundamental-styles for button guidelines. The default button type is "Default button",
+    no modifier is required. Use the <code class="code-snippet">[fdType]=""</code> property to set the button type.
+</description>
+<component-example>
+    <fd-button-types-example></fd-button-types-example>
+</component-example>
+<code-example [exampleFiles]="buttonHtmlType"></code-example>
+<separator></separator>
+
+<fd-docs-section-title id="menu" componentName="button"> Menu Button </fd-docs-section-title>
+<description> In order to use menu button, use <code class="code-snippet">[fdMenu]="true"</code> </description>
+<component-example>
+    <fd-button-menu-example></fd-button-menu-example>
+</component-example>
+<code-example [exampleFiles]="buttonHtmlOptions"></code-example>
+<separator></separator>
+
+<fd-docs-section-title id="sizes" componentName="button"> Button Sizes </fd-docs-section-title>
+<description> Use <code class="code-snippet">[fdCompact]</code> directive to explicitly set button size. </description>
+<component-example>
+    <fd-button-sizes-example></fd-button-sizes-example>
+</component-example>
+<code-example [exampleFiles]="buttonHtmlSize"></code-example>
+<separator></separator>
+
+<fd-docs-section-title id="icons" componentName="button"> Button with Icons </fd-docs-section-title>
+<description>
+    Use
+    <code class="code-snippet">[glyph]="'{{ '{' }}icon-name}'"</code> to add an icon to the button.
+</description>
+<component-example>
+    <fd-button-icons-example></fd-button-icons-example>
+</component-example>
+<code-example [exampleFiles]="buttonHtmlIcon"></code-example>
+<separator></separator>
+
+<fd-docs-section-title id="state" componentName="button"> Button State </fd-docs-section-title>
+<description>
+    'disabled' and 'toggled' states can be achieved through native 'disabled' / 'aria-disabled' attributes and 'toggled'
+    input property. Regarding the disabled buttons there are 2 flavours reflecting two opinions how to make a button
+    disabled. Feel free to check Mozilla Doc for
+    <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/disabled">disabled attribiut</a> and for
+    <a href="https://www.w3.org/TR/wai-aria-1.0/states_and_properties#aria-disabled">aria-disabled</a>.
+</description>
+<component-example>
+    <fd-button-state-example></fd-button-state-example>
+</component-example>
+<code-example [exampleFiles]="buttonHtmlState"></code-example>
+
+<fd-docs-section-title id="toggled" componentName="button"> Toggled Button </fd-docs-section-title>
+<description>
+    A toggle button switches between two actions. One of the actions is always active, one is inactive. Use the toggle
+    button for secondary actions. Use <code>toggled</code> input property to set the action to active.
+</description>
+<component-example>
+    <fd-button-toggled-example></fd-button-toggled-example>
+</component-example>
+<code-example [exampleFiles]="buttonHtmlToggled"></code-example>
+
+<separator></separator>
+
+<description
+    >The inputs for <code>button</code> will be translated into classes attributed to the fundamental-styles guidelines.
+    <br />For example: <br />if <code>positive</code> is passed for <code>fdType</code>, the
+    <code>fd-button--positive</code> class will be added to the element. <br />if <code>compact</code> is passed for
+    <code>size</code>, the class <code>fd-button--compact</code> will be added to the element.
+</description>
+<separator></separator>
+
+<playground [schema]="schema" [schemaInitialValues]="data" (onFormChanges)="onSchemaValues($event)">
+    <button
+        fd-button
+        [fdType]="data.properties.fdType"
+        [fdMenu]="data.properties.fdMenu"
+        [fdCompact]="data.properties.compact"
+        [label]="data.properties.label"
+        [glyph]="data.properties.icon"
+    ></button>
+</playground>

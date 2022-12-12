@@ -1,0 +1,27 @@
+<form #ngForm>
+    <ng-container [ngSwitch]="column.dataType">
+        <fdp-input
+            *ngSwitchCase="'number'"
+            [placeholder]="'platformTable.editableCellNumberPlaceholder' | fdTranslate"
+            [(ngModel)]="columnValue"
+            [name]="_controlUniqName"
+            type="number"
+        ></fdp-input>
+        <fdp-date-picker
+            type="single"
+            *ngSwitchCase="'date'"
+            [placeholder]="'platformTable.editableCellDatePlaceholder' | fdTranslate"
+            [name]="_controlUniqName"
+            [allowNull]="false"
+            [(ngModel)]="columnValue"
+        ></fdp-date-picker>
+        <fdp-switch *ngSwitchCase="'boolean'" [(ngModel)]="columnValue" [name]="_controlUniqName"></fdp-switch>
+        <fdp-input
+            [placeholder]="'platformTable.editableCellStringPlaceholder' | fdTranslate"
+            *ngSwitchDefault
+            [(ngModel)]="columnValue"
+            [name]="_controlUniqName"
+            type="text"
+        ></fdp-input>
+    </ng-container>
+</form>

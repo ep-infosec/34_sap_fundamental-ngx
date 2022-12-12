@@ -1,0 +1,89 @@
+<fd-docs-section-title id="default" componentName="fixed-card-layout">
+    Default Fixed Card Layout
+</fd-docs-section-title>
+<description
+    >Auto arrangement of cards in fixed card layout. The layout is responsive and cards gets re-arranged when window
+    resize happens or some cards gets hidden or shown.</description
+>
+<component-example>
+    <fd-fixed-card-layout-examples></fd-fixed-card-layout-examples>
+</component-example>
+<code-example [exampleFiles]="defaultFixedCardLayout"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="drag-disable" componentName="fixed-card-layout">
+    Disabling drag and drop
+</fd-docs-section-title>
+<description>Behavior of dragging cards can be disabled and enabled.</description>
+<component-example>
+    <fd-fixed-card-layout-disabled-drag></fd-fixed-card-layout-disabled-drag>
+</component-example>
+<code-example [exampleFiles]="dragDisabledFixedCardLayout"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="mobile" componentName="fixed-card-layout"> Mobile display </fd-docs-section-title>
+<description
+    >In mobile display as well layout is consistent and on changing orientation, cards will re-distribute and arrange
+    itself.</description
+>
+<component-example>
+    <fd-fixed-card-layout-mobile-examples></fd-fixed-card-layout-mobile-examples>
+</component-example>
+<code-example [exampleFiles]="mobileFixedCardLayout"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="custom-card-width" componentName="fixed-card-layout">
+    Custom card minimum width
+</fd-docs-section-title>
+<description>
+    <p>
+        By default, calculations for the amount of the available columns takes into consideration minimum card width,
+        which is by default equals 320px (20rem).
+    </p>
+    <p>
+        This parameter can be changed by providing <code>[cardMinimumWidth]</code> input property. The value should be a
+        number of pixels greater than 320.
+    </p>
+</description>
+<component-example>
+    <fd-fixed-card-layout-custom-width-example></fd-fixed-card-layout-custom-width-example>
+</component-example>
+<code-example [exampleFiles]="defaultFixedCardLayout"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="custom-column-width" componentName="fixed-card-layout">
+    Custom columns width
+</fd-docs-section-title>
+<description>
+    <p>
+        By default, columns are equal by their width. It can be changed by providing
+        <code>[columnsWidthConfig]</code> input property. It works similar to the <code>flex-grow</code> in CSS. You
+        should pass an object with the column indexes and their "flex-grow" factors.
+    </p>
+</description>
+<component-example>
+    <fd-fixed-card-layout-custom-column-width-example></fd-fixed-card-layout-custom-column-width-example>
+</component-example>
+<code-example [exampleFiles]="customColumnWidth"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="max-columns" componentName="fixed-card-layout">
+    Maximum number of columns
+</fd-docs-section-title>
+<description>
+    <p>
+        By default layout can have a maximum of 10 columns. This parameter can be changed by providing
+        <code>maxColumns</code> input property.
+    </p>
+</description>
+<component-example>
+    <fd-fixed-card-layout-max-columns-example></fd-fixed-card-layout-max-columns-example>
+</component-example>
+<code-example [exampleFiles]="customColumnWidth"></code-example>
+
+<separator></separator>

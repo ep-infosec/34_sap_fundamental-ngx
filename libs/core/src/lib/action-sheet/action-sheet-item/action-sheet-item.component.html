@@ -1,0 +1,11 @@
+<button
+    fd-button
+    [class]="negative ? 'fd-button--negative' : 'fd-button--transparent fd-button--text-alignment-left'"
+    role="menuitem"
+    class="fd-button--full-width"
+    [label]="label"
+    [glyph]="glyph"
+    [disabled]="disabled"
+>
+    <ng-content></ng-content>
+</button>

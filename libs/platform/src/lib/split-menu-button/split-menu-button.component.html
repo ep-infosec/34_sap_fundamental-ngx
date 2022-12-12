@@ -1,0 +1,38 @@
+<div
+    class="fd-button-split"
+    [class]="typeClass"
+    role="group"
+    aria-label="split-button"
+    [attr.dir]="dir"
+    [style.max-width]="splitButtonMaxWidth"
+>
+    <button
+        fd-button
+        #primaryBtn
+        [label]="buttonLabel"
+        [style.width]="primaryButtonWidth"
+        style="overflow: hidden"
+        [attr.id]="id"
+        [attr.name]="name"
+        [attr.title]="title"
+        [attr.aria-label]="buttonLabel"
+        [disabled]="disabled"
+        [fdType]="type"
+        [glyph]="icon"
+        [attr.tabindex]="tabindex"
+        (click)="primaryButtonClicked($event)"
+    ></button>
+    <button
+        fd-button
+        [attr.id]="secondaryId"
+        [attr.name]="name"
+        [attr.title]="menuTitle"
+        [attr.aria-label]="menuTitle"
+        glyph="slim-arrow-down"
+        [disabled]="disabled"
+        [fdType]="type"
+        [attr.tabindex]="tabindex"
+        [attr.aria-haspopup]="true"
+        [fdpMenuTriggerFor]="menu"
+    ></button>
+</div>

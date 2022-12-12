@@ -1,0 +1,98 @@
+<fd-docs-section-title id="basic" componentName="dynamic-page"> Basic Dynamic Page </fd-docs-section-title>
+<description> </description>
+<component-example>
+    <fdp-platform-dynamic-page-example></fdp-platform-dynamic-page-example>
+</component-example>
+<code-example [exampleFiles]="dynamicPageBasic"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="snap-scroll" componentName="dynamic-page">
+    Dynamic Page that snaps on scrolling
+</fd-docs-section-title>
+<description>
+    Other than the expand/collapse/pin buttons and Snap on Click feature, scrolling the content also snaps the header.
+    Scrolling down will hide the header, and scrolling back up to the top will bring back the header into view.
+</description>
+<component-example>
+    <fdp-platform-dynamic-page-snap-scroll-example></fdp-platform-dynamic-page-snap-scroll-example>
+</component-example>
+<code-example [exampleFiles]="dynamicPageSnapScroll"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="tabbed" componentName="dynamic-page"> Tabbed Dynamic Page </fd-docs-section-title>
+<description>
+    Specify the <code>[tabLabel]</code> option to internally set up tabbed content for the page. Use
+    <code>(tabChange)</code> property to do something on tab change. To programmatically switch/set the dynamic page
+    tab, call <code>setSelectedTab(id)</code> on the <code>DynamicPageComponent</code> and pass in the id of the tab to
+    switch/set to. To disable stacked tabs behavior, pass <code>[stackContent]="false"</code>.
+</description>
+<component-example>
+    <fdp-platform-dynamic-page-tabbed-example></fdp-platform-dynamic-page-tabbed-example>
+</component-example>
+<code-example [exampleFiles]="dynamicPageTabbed"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="responsive-padding" componentName="dynamic-page">
+    Page Responsive Behavior
+</fd-docs-section-title>
+<description>
+    AutoResponsive DynamicPage is enabled by default. This will auto apply certain sizes for breakpoints:
+    <ul>
+        <li>max-width: 599px - small</li>
+        <li>min-width: 600px and max-width: 1023px - medium</li>
+        <li>min-width: 1024px and max-width: 1439px - large</li>
+        <li>min-width: 1440px - extra large</li>
+    </ul>
+    AutoResponsive can be can be disabled by passing <code>[autoResponsive]="false"</code> then the left and right
+    paddings of the Dynamic Page can be adjusted according to the width of the container with the
+    <code>[size]</code> property. Available values are: <code>small</code>, <code>medium</code>, <code>large</code> and
+    <code>extra-large</code>
+</description>
+<component-example>
+    <fdp-platform-dynamic-page-responsive-padding-example></fdp-platform-dynamic-page-responsive-padding-example>
+</component-example>
+<code-example [exampleFiles]="dynamicPageResponsivePadding"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="non-collapsible" componentName="dynamic-page">
+    Disable Header Collapse
+</fd-docs-section-title>
+<description>
+    The collapsing header can be disabled by setting <code>[collapsible]</code> and <code>[pinnable]</code> properties
+    to <code>false</code>.
+</description>
+<component-example>
+    <fdp-platform-dynamic-page-non-collapsible-example></fdp-platform-dynamic-page-non-collapsible-example>
+</component-example>
+<code-example [exampleFiles]="dynamicPageNonCollapsible"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="facets" componentName="dynamic-page">
+    Tabbed Dynamic Page with a Flexible Column Layout
+</fd-docs-section-title>
+<description>
+    Please note to give <code>position: relative</code> to the container holding the dynamic page, so that the page is
+    contained within the column(or any other container) correctly.</description
+>
+<component-example>
+    <fdp-platform-dynamic-page-flexible-column-example></fdp-platform-dynamic-page-flexible-column-example>
+</component-example>
+<code-example [exampleFiles]="dynamicPageFlexibleColumn"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="facets" componentName="dynamic-page">Dynamic Page with Facets</fd-docs-section-title>
+<description>
+    The Dynamic Page header can consist of various facet types, such as Form facet, Key-value facet, Image facet, and
+    Rating Indicator facet. When an Image facet is used in the header content, collapsing the header will bring the
+    image facet next to the title. Expanding the header will place it back to its original place.
+</description>
+<component-example>
+    <fdp-platform-dynamic-page-facets-example></fdp-platform-dynamic-page-facets-example>
+</component-example>
+<code-example [exampleFiles]="dynamicPageFacets"></code-example>

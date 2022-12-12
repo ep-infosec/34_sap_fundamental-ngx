@@ -1,0 +1,9 @@
+@import 'fundamental-styles/dist/dialog';
+
+.fd-dialog {
+    z-index: 999;
+}
+
+.fd-dialog__resize-handle {
+    z-index: 1001;
+}

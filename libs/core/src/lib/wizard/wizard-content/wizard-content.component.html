@@ -1,0 +1,15 @@
+<ng-template #contentTemplate>
+    <section
+        [id]="wizardContentId"
+        class="fd-wizard__content"
+        [class]="
+            (contentBackground ? 'fd-wizard__content--' + contentBackground + ' ' : '') +
+            (size ? 'fd-wizard__content--' + size : '')
+        "
+        [class.fd-wizard-tall-content]="tallContent"
+    >
+        <div class="fd-wizard__step-content-container">
+            <ng-content></ng-content>
+        </div>
+    </section>
+</ng-template>

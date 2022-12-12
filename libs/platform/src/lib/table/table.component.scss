@@ -1,0 +1,400 @@
+@use '@angular/cdk';
+@import 'fundamental-styles/dist/scrollbar';
+
+@include cdk.a11y-visually-hidden();
+
+$block: fdp-table;
+
+$fd-table-border: 0.0625rem solid #e4e4e4;
+$fd-table-border-var: var(--sapList_BorderWidth, 0.0625rem) solid var(--sapList_BorderColor, #e4e4e4);
+
+$fd-table-header-color: #f2f2f2;
+$fd-table-header-color-var: var(--sapList_HeaderBackground, #f2f2f2);
+
+$fd-table-scrollbar-width: var(--fdScrollbar_Dimension);
+$fd-table-scrollbar-width-with-border: calc(#{$fd-table-scrollbar-width} + var(--sapList_BorderWidth, 0.0625rem));
+
+.#{$block} {
+    display: block;
+    @mixin fd-rtl {
+        @at-root {
+            [dir='rtl'] &,
+            &[dir='rtl'] {
+                @content;
+            }
+        }
+    }
+
+    .#{$block}__body-table,
+    .#{$block}__header-table,
+    .#{$block}__body-hs-table {
+        /** table-layout:fixed does not work with absolutely positioned cells instead we need to keep each cell with defined width */
+        table-layout: auto;
+        width: 100%;
+        /** need to keep borders separate in order to align cells which are absolutely positioned */
+        border-collapse: separate;
+        border-spacing: 0;
+    }
+
+    /** Temporary until arrow keyboard navigation not implemented */
+    .fd-table__body:focus {
+        outline-offset: -0.1875rem;
+        outline-width: 0.0625rem;
+        outline-width: var(--sapContent_FocusWidth, 0.0625rem);
+        outline-color: #000;
+        outline-color: var(--sapContent_FocusColor, #000);
+        outline-style: dotted;
+        outline-style: var(--sapContent_FocusStyle, dotted);
+    }
+
+    /** Fixes due to the absolute positioning */
+    &.fd-table--tree,
+    &.fd-table--group {
+        .fd-table__body .fd-table__row {
+            &,
+            .fd-replace-indicator {
+                height: 2.75rem;
+            }
+        }
+
+        &.fd-table--compact .fd-table__body .fd-table__row {
+            &,
+            .fd-replace-indicator {
+                height: 2rem;
+            }
+        }
+
+        &.fd-table--condensed .fd-table__body .fd-table__row {
+            &,
+            .fd-replace-indicator {
+                height: 1.563rem;
+            }
+        }
+    }
+
+    /** Tree table Drag & Drop fixes due to the absolute positioning */
+    &.fd-table--tree {
+        .fd-table__body .fd-table__row {
+            &:hover {
+                cursor: grab;
+            }
+
+            &:active {
+                cursor: grabbing;
+            }
+
+            &.fd-dnd-on-drag {
+                &.fd-dnd-placeholder {
+                    padding-left: 2.8rem;
+
+                    @include fd-rtl() {
+                        padding-left: 0.5rem;
+                    }
+                }
+
+                &:not(.fd-dnd-placeholder) {
+                    .fdp-table__cell--selection {
+                        top: 0;
+                        transform: translate(-100%, 0);
+
+                        @include fd-rtl() {
+                            transform: translate(100%, 0);
+                        }
+                    }
+                }
+            }
+
+            .fd-replace-indicator {
+                top: auto;
+            }
+        }
+
+        &.fd-table--condensed,
+        &.fd-table--compact {
+            .fd-table__row.fd-dnd-on-drag.fd-dnd-placeholder {
+                padding-left: 2rem;
+
+                @include fd-rtl() {
+                    padding-left: 0.5rem;
+                }
+            }
+        }
+    }
+
+    // In fundamental-styles there's a fix for the table row height in condensed mode, that includes absolute positioning for the checkbox
+    // it's not needed here
+    &.fd-table--condensed .fd-table__body .fd-table__cell--checkbox .fd-checkbox__label {
+        position: relative;
+        margin-top: 0;
+    }
+
+    &.#{$block}--no-outer-border {
+        .#{$block}__header,
+        .#{$block}__body,
+        .#{$block}__body-hs {
+            border-left: none;
+            border-right: none;
+
+            @include fd-rtl {
+                border-left: none;
+                border-right: none;
+
+                .fd-table__cell:first-child {
+                    border-right: none;
+                }
+            }
+        }
+
+        .#{$block}__header {
+            .fd-table__cell {
+                border-top: none;
+            }
+        }
+
+        .#{$block}__body {
+            border-bottom: none;
+        }
+    }
+
+    &__container {
+        position: relative;
+        overflow: hidden;
+        outline: none;
+    }
+
+    &__header,
+    .#{$block}__body {
+        position: relative;
+        border-left: $fd-table-border;
+        border-left: $fd-table-border-var;
+
+        @include fd-rtl() {
+            border-left: none;
+            border-right: $fd-table-border;
+            border-right: $fd-table-border-var;
+
+            .fd-table__cell:first-child {
+                border-right: none;
+            }
+        }
+    }
+
+    &__header {
+        // is needed to have proper overflow for header cells with frozen columns
+        z-index: 2;
+
+        .fd-table__cell,
+        .fd-table__cell--mock {
+            border-top: $fd-table-border;
+            border-top: $fd-table-border-var;
+            border-bottom: $fd-table-border;
+            border-bottom: $fd-table-border-var;
+        }
+
+        .fd-table__cell {
+            margin-top: 0;
+            max-height: 100%;
+            position: sticky;
+            top: 0;
+
+            .fd-table__popover--custom {
+                display: none;
+            }
+
+            .fdp-table__navigation-indicator {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+    }
+
+    &__body {
+        &-hs {
+            box-sizing: border-box;
+            border-left: $fd-table-border;
+            border-left: $fd-table-border-var;
+            background: var(--fdScrollbar_Track_Color, #ffffff);
+            padding-right: $fd-table-scrollbar-width;
+
+            @include fd-rtl() {
+                padding-right: 0;
+                padding-left: $fd-table-scrollbar-width;
+                border-left: none;
+                border-right: $fd-table-border;
+                border-right: $fd-table-border-var;
+            }
+
+            &-wrap {
+                width: 100%;
+                position: relative;
+            }
+
+            &-spacer {
+                position: absolute;
+                height: 1px;
+                visibility: hidden;
+            }
+        }
+    }
+
+    &__empty {
+        &-table-message {
+            box-sizing: border-box;
+            padding: 1rem;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            align-content: center;
+            width: 100%;
+        }
+
+        .fd-table__cell {
+            width: 100%;
+        }
+
+        .fd-table__body {
+            border-left: none;
+
+            @include fd-rtl() {
+                border-left: $fd-table-border;
+                border-left: $fd-table-border-var;
+                border-right: none;
+            }
+        }
+
+        &.fixed-height {
+            background-color: #fff;
+            background-color: var(--sapList_Background, #fff);
+        }
+    }
+
+    .fd-table__cell {
+        &--checkbox {
+            border-left: none;
+            border-right: $fd-table-border;
+            border-right: $fd-table-border-var;
+
+            & + .fd-table__cell--fixed {
+                border-left: none;
+            }
+
+            @include fd-rtl() {
+                border-left: $fd-table-border;
+                border-left: $fd-table-border-var;
+
+                & + .fd-table__cell {
+                    border-right: none;
+                }
+            }
+        }
+
+        &--group {
+            min-width: 100%;
+            border-left: none;
+
+            /**
+                Due to the changed table-layout group row cell may looe it's top border.
+                For example when previous (relatively to the group row) row columns tolal width < 100% of the table.
+            */
+            &::before {
+                content: '';
+                display: block;
+                position: absolute;
+                top: -0.0625rem;
+                left: 0;
+                right: 0;
+                border-top: $fd-table-border;
+                border-top: $fd-table-border-var;
+            }
+        }
+
+        &--status-indicator {
+            border-left: none;
+            border-right: $fd-table-border;
+            border-right: $fd-table-border-var;
+            min-width: 0.375rem; // TODO: should be moved to styles
+
+            @include fd-rtl {
+                border-right: none;
+            }
+        }
+
+        &--mock {
+            &.fd-table__cell--mock-borderless {
+                border-left: none;
+                border-right: none;
+            }
+        }
+
+        /** Temporary until column width can fit content */
+        .fdp-table__navigation-indicator {
+            margin: auto;
+        }
+
+        @include fd-rtl() {
+            /** Because last child always a mock */
+            &:nth-last-child(2):not(.#{$block}__cell--group) {
+                border-left: $fd-table-border;
+                border-left: $fd-table-border-var;
+            }
+        }
+    }
+
+    .fd-dnd-item {
+        position: inherit;
+    }
+
+    // TODO(d.stepanenko): styles below should be moved into fundamental-styles
+    .fd-table__cell--fixed {
+        position: sticky;
+        display: table-cell;
+        z-index: 1;
+    }
+
+    .fd-table__cell--checkbox fd-checkbox {
+        // positioning checkbox in the middle of the cell
+        display: flex;
+        height: 100%;
+        .fd-checkbox__label {
+            align-self: center;
+            margin: 0;
+        }
+    }
+
+    .fd-table__expand-wrapper {
+        display: flex;
+        align-items: center;
+    }
+    // END TODO
+
+    &__column-resizer {
+        bottom: $fd-table-scrollbar-width-with-border;
+    }
+
+    &__cell--navigation {
+        width: 4rem;
+        min-width: 4rem;
+        max-width: 4rem;
+    }
+
+    &__body-table {
+        &.fd-table--pop-in {
+            .fd-table__row--secondary {
+                .fd-table__cell {
+                    border-bottom: var(--sapList_BorderWidth) solid var(--sapList_BorderColor);
+                }
+            }
+
+            .#{$block} {
+                &__header {
+                    .fd-table__cell {
+                        .fd-table__text {
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

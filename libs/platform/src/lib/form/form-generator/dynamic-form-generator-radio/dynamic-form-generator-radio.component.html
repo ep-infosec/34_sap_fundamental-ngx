@@ -1,0 +1,11 @@
+<ng-container [formGroup]="form">
+    <ng-container [formGroupName]="formGroupName">
+        <fdp-radio-group
+            [isInline]="formItem.guiOptions?.inline || false"
+            [inlineLayout]="formItem.guiOptions?.inlineLayout"
+            [name]="name"
+            [list]="choices"
+            [formControlName]="name"
+        ></fdp-radio-group>
+    </ng-container>
+</ng-container>

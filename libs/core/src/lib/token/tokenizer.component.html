@@ -1,0 +1,71 @@
+<div
+    class="fd-tokenizer fd-tokenizer--scrollable"
+    [class.is-focus]="_tokenizerHasFocus"
+    [class.fd-tokenizer--compact]="compact"
+>
+    <div class="fd-tokenizer__inner" #tokenizerInner>
+        <div role="listbox">
+            <ng-content select="fd-token"></ng-content>
+        </div>
+
+        <ng-container *ngIf="_showOverflowPopover && (compact || compactCollapse); else moreElement">
+            <ng-container *ngTemplateOutlet="tokensOverflow"></ng-container>
+        </ng-container>
+
+        <ng-content select="[fd-form-control]"></ng-content>
+    </div>
+    <span fd-input-group-addon *ngIf="glyph" #inputGroupAddOn [button]="true" placement="after">
+        <button
+            fd-button
+            [class]="compact ? 'fd-tokenizer-addon--compact' : 'fd-tokenizer-addon'"
+            fdType="transparent"
+            [glyph]="glyph"
+            type="button"
+        ></button>
+    </span>
+</div>
+
+<ng-template #tokensOverflow>
+    <fd-popover placement="bottom-start" title="" [noArrow]="false" [focusTrapped]="true" [focusAutoCapture]="true">
+        <fd-popover-control>
+            <ng-container *ngTemplateOutlet="moreElement"></ng-container>
+        </fd-popover-control>
+
+        <fd-popover-body>
+            <ul fd-list class="fd-tokenizer__overflow-list">
+                <li fd-list-item class="fd-tokenizer__overflow-list-item" *ngFor="let token of _hiddenTokens">
+                    <ng-container #viewContainer></ng-container>
+
+                    <span
+                        *ngIf="!token.readOnly"
+                        class="fd-token__close"
+                        role="button"
+                        [attr.aria-label]="token.deleteButtonLabel || ('coreToken.deleteButtonLabel' | fdTranslate)"
+                        (click)="token.closeClickHandler($event)"
+                    ></span>
+                </li>
+            </ul>
+        </fd-popover-body>
+    </fd-popover>
+</ng-template>
+
+<ng-template #moreElement>
+    <span
+        (click)="moreClicked()"
+        *ngIf="
+            (moreTokensLeft.length > 0 || moreTokensRight.length > 0 || hiddenCozyTokenCount > 0) &&
+            !open &&
+            !_tokenizerHasFocus
+        "
+        class="fd-tokenizer-more"
+        role="button"
+        tabindex="0"
+    >
+        <ng-container *ngIf="compact || compactCollapse">
+            {{ 'coreTokenizer.moreLabel' | fdTranslate: { count: moreTokensLeft.length + moreTokensRight.length } }}
+        </ng-container>
+        <ng-container *ngIf="!compact && !compactCollapse">
+            {{ 'coreTokenizer.moreLabel' | fdTranslate: { count: hiddenCozyTokenCount } }}
+        </ng-container>
+    </span>
+</ng-template>

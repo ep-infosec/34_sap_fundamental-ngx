@@ -1,0 +1,9 @@
+{
+    "$schema": "../../../../node_modules/ng-packagr/ng-package.schema.json",
+    "dest": "../../../../dist/libs/platform",
+    "deleteDestPath": true,
+    "lib": {
+        "entryFile": "./public_api.ts"
+    },
+    "allowedNonPeerDependencies": ["focus-trap", "xml2js", "lodash-es", "fast-deep-equal", "@fundamental-ngx/i18n"]
+}

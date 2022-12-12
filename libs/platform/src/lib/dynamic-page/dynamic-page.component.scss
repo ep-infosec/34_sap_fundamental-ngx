@@ -1,0 +1,59 @@
+@import 'fundamental-styles/dist/dynamic-page';
+
+/* Custom styles */
+
+.fd-dynamic-page {
+    display: flex;
+    flex-direction: column;
+
+    height: 100%;
+    width: 100%;
+
+    .fd-dynamic-page__header {
+        z-index: 2;
+    }
+
+    .fd-dynamic-page__content,
+    .fd-dynamic-page__tabs--overflow {
+        display: block;
+        flex: 1;
+    }
+
+    .fd-dynamic-page__tabs--overflow {
+        display: flex;
+
+        // TODO: we should skip nested tabs
+        .fd-tabs-custom {
+            height: 100%;
+
+            display: flex;
+            flex-direction: column;
+        }
+
+        .fd-tabs__content {
+            flex: 1;
+
+            display: flex;
+        }
+
+        .fd-tabs__panel.is-expanded {
+            display: flex;
+        }
+    }
+
+    .footer-spacer {
+        height: 3rem;
+    }
+
+    .content-sticker {
+        position: static;
+    }
+
+    .fd-dynamic-page__header--not-collapsible {
+        .fd-dynamic-page__title-area.is-hover,
+        .fd-dynamic-page__title-area:hover {
+            background-color: var(--sapObjectHeader_Background, #fff);
+            cursor: default;
+        }
+    }
+}

@@ -1,0 +1,15 @@
+@import 'fundamental-styles/dist/side-nav';
+
+.fd-nested-list__item {
+    display: block;
+
+    .fd-nested-list__link {
+        cursor: pointer;
+    }
+
+    .fd-nested-list__content {
+        .fd-nested-list__button.fd-button {
+            background: none;
+        }
+    }
+}

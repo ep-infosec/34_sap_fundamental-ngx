@@ -1,0 +1,39 @@
+@import 'fundamental-styles/dist/icon-tab-bar';
+@import 'fundamental-styles/dist/list';
+
+.cdk-drag-placeholder {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.fd-icon-tab-bar__item--hidden {
+    display: none;
+}
+
+.fd-icon-tab-bar__list {
+    max-height: 20rem;
+    overflow: auto;
+}
+
+// These styles should move to fundamental/styles repo.
+
+.fd-icon-tab-bar__list-item-counter {
+    padding-left: 5px;
+}
+
+[dir='rtl'] {
+    .fd-icon-tab-bar__list-item-counter {
+        padding-left: 0;
+        padding-right: 0.25rem;
+    }
+}
+
+.screenreader-only {
+    position: absolute !important; /* Outside the DOM flow */
+    height: 1px;
+    width: 1px; /* Nearly collapsed */
+    overflow: hidden;
+    opacity: 0;
+    clip: rect(1px 1px 1px 1px); /* IE 7+ only support clip without commas */
+    clip: rect(1px, 1px, 1px, 1px); /* All other browsers */
+}

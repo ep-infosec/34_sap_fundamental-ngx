@@ -1,0 +1,22 @@
+{{ abbreviate }}
+
+<i
+    *ngIf="zoomGlyph"
+    role="presentation"
+    class="fd-avatar__zoom-icon"
+    [class]="zoomGlyph ? 'sap-icon--' + zoomGlyph : ''"
+    (mousedown)="zoomClicked($event)"
+>
+</i>
+
+<i
+    *ngIf="glyph || showDefault"
+    class="fd-avatar__icon"
+    role="presentation"
+    [class]="glyph ? 'sap-icon--' + glyph : 'sap-icon--person-placeholder'"
+>
+</i>
+
+<div #content style="display: none">
+    <ng-content></ng-content>
+</div>

@@ -1,0 +1,94 @@
+<fd-dialog class="fdp-table-p13-sorting-dialog">
+    <fd-dialog-header>
+        <ng-template fdTemplate="header">
+            <div fd-bar-left>
+                <fd-bar-element>
+                    <h4 fd-title [headerSize]="4">
+                        {{ 'platformTable.P13SortDialogHeader' | fdTranslate }}
+                    </h4>
+                </fd-bar-element>
+            </div>
+            <div fd-bar-right>
+                <fd-bar-element>
+                    <fdp-table-reset-button></fdp-table-reset-button>
+                </fd-bar-element>
+            </div>
+        </ng-template>
+    </fd-dialog-header>
+
+    <fd-dialog-body>
+        <div class="sort-row" *ngFor="let rule of rules; let i = index; trackBy: _trackByColumnKey">
+            <fd-select
+                class="sort-row__select"
+                [value]="rule.columnKey"
+                (valueChange)="_onRuleColumnKeyChange(rule, $event)"
+                [placeholder]="'platformTable.P13SortDialogNoneSelectedColumn' | fdTranslate"
+            >
+                <li
+                    fd-option
+                    *ngFor="let column of columns | getAvailableSortColumns: rules:rule.columnKey"
+                    [value]="column.key"
+                >
+                    {{ column.label }}
+                </li>
+            </fd-select>
+
+            <fd-select
+                class="sort-row__select"
+                [value]="rule.direction"
+                (valueChange)="_onRuleDirectionChange(rule, $event)"
+                [placeholder]="'platformTable.P13SortDialogNoneSelectedSorting' | fdTranslate"
+            >
+                <li fd-option [value]="SORT_DIRECTION.ASC">
+                    {{ 'platformTable.P13SortDialogSortOrderSelectOptionAsc' | fdTranslate }}
+                </li>
+                <li fd-option [value]="SORT_DIRECTION.DESC">
+                    {{ 'platformTable.P13SortDialogSortOrderSelectOptionDesc' | fdTranslate }}
+                </li>
+            </fd-select>
+
+            <div class="sort-row__actions">
+                <button
+                    fd-button
+                    fdType="transparent"
+                    glyph="sys-cancel"
+                    [attr.aria-label]="'platformTable.P13SortDialogRemoveSortBtnTitle' | fdTranslate"
+                    [title]="'platformTable.P13SortDialogRemoveSortBtnTitle' | fdTranslate"
+                    (click)="_removeRule(rule)"
+                ></button>
+
+                <button
+                    fd-button
+                    fdType="transparent"
+                    glyph="add"
+                    [attr.aria-label]="'platformTable.P13SortDialogAddNewSortBtnTitle' | fdTranslate"
+                    [title]="'platformTable.P13SortDialogAddNewSortBtnTitle' | fdTranslate"
+                    (click)="_addNew(i)"
+                ></button>
+            </div>
+        </div>
+    </fd-dialog-body>
+
+    <fd-dialog-footer>
+        <fd-dialog-footer-button>
+            <button
+                fd-button
+                fdType="emphasized"
+                fd-dialog-decisive-button
+                [label]="'platformTable.P13SortDialogConfirmationBtnLabel' | fdTranslate"
+                (click)="confirm()"
+            ></button>
+        </fd-dialog-footer-button>
+
+        <fd-dialog-footer-button>
+            <button
+                fd-button
+                fdType="transparent"
+                fd-dialog-decisive-button
+                fd-initial-focus
+                [label]="'platformTable.P13SortDialogCancelBtnLabel' | fdTranslate"
+                (click)="cancel()"
+            ></button>
+        </fd-dialog-footer-button>
+    </fd-dialog-footer>
+</fd-dialog>

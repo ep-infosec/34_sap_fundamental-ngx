@@ -1,0 +1,71 @@
+<fd-docs-section-title id="default" componentName="menu">Menu</fd-docs-section-title>
+<description
+    >The Menu can be invoked from any element, by using the <code>fdpMenuTriggerFor</code> directive.
+</description>
+<component-example>
+    <fdp-platform-menu-basic-example></fdp-platform-menu-basic-example>
+</component-example>
+<code-example [exampleFiles]="menuBasic"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="with-icons" componentName="menu">Menu with icons</fd-docs-section-title>
+<description>
+    Menu items can be extended with additional content using the following directives from
+    <code>@fundamental-ngx/core</code>:
+    <ul>
+        <li>
+            <code>fd-menu-addon</code> - adds icon to menu item. If you want to add the icon before the menu item title,
+            remember to add the <code>position="before"</code>
+        </li>
+        <li><code>fd-menu-shortcut</code> - adds information about useful shortcuts</li>
+    </ul>
+</description>
+<component-example>
+    <fdp-platform-menu-with-icons-example></fdp-platform-menu-with-icons-example>
+</component-example>
+<code-example [exampleFiles]="menuWithIcons"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="with-horizontal-positioning" componentName="menu"
+    >Menu with Horizontal Positioning</fd-docs-section-title
+>
+<description
+    >The horizontal position of the menu can be controlled via the <code>xPosition</code> property, which can be set to
+    either 'after' or 'before'. The default value is 'after'.</description
+>
+<component-example>
+    <fdp-platform-menu-x-position-example></fdp-platform-menu-x-position-example>
+</component-example>
+<code-example [exampleFiles]="menuXPosition"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="cascading" componentName="menu">Cascading Menu</fd-docs-section-title>
+<description>Menus can be cascaded by adding the <code>fdpMenuTriggerFor</code> directives to MenuItems.</description>
+<component-example>
+    <fdp-platform-menu-cascade-example></fdp-platform-menu-cascade-example>
+</component-example>
+<code-example [exampleFiles]="menuCascade"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="with-scrolling" componentName="menu">Menu Within Scrolling Container</fd-docs-section-title>
+<description>
+    <p>
+        Menus are designed to reposition themselves upon scroll of the page or within a scrollable container. However,
+        In order to accomplish this the Menu/MenuTrigger system is reliant on the
+        <a href="https://material.angular.io/cdk/scrolling/overview">CDK Scrolling</a> package
+    </p>
+    <p>
+        For containers that are scrollable (e.g. via the CSS <code>overflow: scroll</code> property), the user needs to
+        add the <code>cdkScrollable</code> directive to that container, and import the CDK ScrollingModule.
+    </p>
+</description>
+<component-example>
+    <fdp-platform-menu-scrolling-example></fdp-platform-menu-scrolling-example>
+</component-example>
+<code-example [exampleFiles]="menuScrolling"></code-example>
+
+<separator></separator>

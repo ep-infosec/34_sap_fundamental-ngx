@@ -1,0 +1,69 @@
+<fd-docs-section-title id="form" componentName="date-picker">
+    Simple Date Picker and Range Date Picker in Platform Form.
+</fd-docs-section-title>
+
+<description>
+    Value of date-picker can be initialized by passing data using object property in fdp-form-group.
+</description>
+<component-example>
+    <fdp-platform-date-picker-example></fdp-platform-date-picker-example>
+</component-example>
+<code-example [exampleFiles]="datePickerExample"></code-example>
+
+<separator></separator>
+<fd-docs-section-title id="disable-calendar" componentName="date-picker">
+    Disable parts of Calendar for selection
+</fd-docs-section-title>
+<description>
+    Part of Calendar can be disabled. This can be controlled by passing disableFunction for simple date-picker and
+    passing disableRangeStartFunction and disableRangeEndFunction for range Date Picker.
+</description>
+<component-example>
+    <fdp-platform-date-picker-disable-func-example></fdp-platform-date-picker-disable-func-example>
+</component-example>
+<code-example [exampleFiles]="datePickerDisableFunction"></code-example>
+
+<separator></separator>
+<fd-docs-section-title id="format" componentName="date-picker"> Date Picker Formatting </fd-docs-section-title>
+<description>
+    Providing a custom format for the dates is possible through providing <code>DATE_TIME_FORMATS</code> config.
+</description>
+<component-example>
+    <fdp-platform-date-picker-format-example></fdp-platform-date-picker-format-example>
+</component-example>
+<code-example [exampleFiles]="datePickerFormat"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="internationalization" componentName="date-picker">
+    Internationalization of Date Picker
+</fd-docs-section-title>
+<description>
+    To use another locale it is needed to provide translated aria labels and additional locale data if it's required by
+    used DatetimeAdapter.
+    <br />
+    Since FdDatetimeAdapter implementation relies on native date api for parsing and formatting dates, it might not work
+    correctly with some of the locales out of the box. We recommend switching to the DayjsDatetimeAdapter for more
+    flexibility.
+    <br />
+    Please check examples and documentation on:
+    <b> <a routerLink="/core/dayjs-datetime-adapter" target="_blank"> Dayjs date time adapter </a> </b>.
+</description>
+<component-example>
+    <fdp-platform-date-picker-i18n-example></fdp-platform-date-picker-i18n-example>
+</component-example>
+<code-example [exampleFiles]="datePickeri18nExample"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="update-on-blur" componentName="date-picker">
+    Date picker that updates its value on blur.
+</fd-docs-section-title>
+<description>
+    Set <code>[processInputOnBlur]="true"</code> in order to move the processing of input value to whenever component
+    loses focus. You may also hit "enter" to apply the value
+</description>
+<component-example>
+    <fdp-date-picker-update-on-blur-example></fdp-date-picker-update-on-blur-example>
+</component-example>
+<code-example [exampleFiles]="datePickerUpdateOnBlur"></code-example>

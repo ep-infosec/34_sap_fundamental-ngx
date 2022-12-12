@@ -1,0 +1,49 @@
+<fd-docs-section-title id="dialog-config" componentName="global-config"> Dialog global config </fd-docs-section-title>
+<description>
+    Dialog default configuration can be provided using <code>DIALOG_DEFAULT_CONFIG</code> Injection Token. To globally
+    configure the dialog provide <code>DialogConfig</code> for <code>DIALOG_DEFAULT_CONFIG</code> in your application
+    root module.
+</description>
+<fd-code-snippet [file]="dialogGlobalConfigExample" [standAlone]="true"></fd-code-snippet>
+
+<separator></separator>
+
+<fd-docs-section-title id="message-box-config" componentName="global-config">
+    Message box global config
+</fd-docs-section-title>
+<description>
+    Message box default configuration can be provided using <code>MESSAGE_BOX_DEFAULT_CONFIG</code> Injection Token. To
+    globally configure the message box provide <code>MessageBoxConfig</code> for <code>MESSAGE_BOX_DEFAULT_CONFIG</code>
+    in your application root module.
+</description>
+<fd-code-snippet [file]="messageBoxGlobalConfigExample" [standAlone]="true"></fd-code-snippet>
+
+<separator></separator>
+
+<fd-docs-section-title id="mobile-mode-config" componentName="global-config">
+    Control Mobile mode global config
+</fd-docs-section-title>
+<description>
+    Control mobile mode default configuration can be provided using <code>MOBILE_MODE_CONFIG</code> Injection Token. To
+    globally configure control mobile mode:
+    <ul>
+        <li>Provide <code>MobileModeConfigToken</code> value for <code>MOBILE_MODE_CONFIG</code> token</li>
+        <li>
+            Specify the target control in <code>MobileModeConfigToken.target</code> using <code>MobileModeControl</code>
+        </li>
+    </ul>
+</description>
+<fd-code-snippet [file]="mobileGlobalConfigExample" [standAlone]="true"></fd-code-snippet>
+
+<separator></separator>
+
+<fd-docs-section-title id="popover-mobile-mode-config" componentName="global-config">
+    Popover Mobile mode global config
+</fd-docs-section-title>
+<description>
+    Popover Mobile default configuration can be provided using <code>MOBILE_MODE_CONFIG</code> Injection Token. To
+    globally configure the popover mobile, provide <code>MobileModeConfigToken.target</code> for
+    <code>POPOVER_MOBILE_CONFIG</code>
+    in your application root module.
+</description>
+<fd-code-snippet [file]="popoverMobileGlobalConfigExample" [standAlone]="true"></fd-code-snippet>

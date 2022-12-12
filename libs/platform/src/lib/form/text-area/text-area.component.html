@@ -1,0 +1,53 @@
+<textarea
+    #inputElementRef
+    fd-form-control
+    [attr.id]="id"
+    [attr.aria-label]="ariaLabel"
+    [attr.aria-labelledby]="ariaLabelledBy"
+    [attr.aria-describedby]="id + '-counter'"
+    [attr.aria-required]="required"
+    [attr.placeholder]="placeholder"
+    [disabled]="disabled"
+    [readonly]="readonly"
+    [rows]="growing ? 2 : height ? 2 : growingMaxLines"
+    [cols]="cols"
+    [wrap]="wrapType"
+    [maxlength]="!showExceededText ? maxLength : null"
+    [(ngModel)]="value"
+    [state]="getUpdatedState()"
+    (paste)="handlePasteInteraction()"
+    (blur)="_onFocusChanged(false)"
+    (focus)="_onFocusChanged(true)"
+></textarea>
+
+<!-- ICU recommends full text in format -->
+<div
+    class="fd-textarea-counter"
+    *ngIf="showExceededText"
+    aria-live="polite"
+    aria-atomic="true"
+    [attr.id]="id + '-counter'"
+    #counter
+>
+    <!-- render spaces instead of the actual value while translation string is loading in order to avoid content jumps -->
+    <ng-container *ngIf="counterExcessOrRemaining === 'excess'; else charactersRemaining">
+        <span
+            [innerHtml]="
+                (exceededCharCount === 1
+                    ? 'platformTextarea.counterMessageCharactersOverTheLimitSingular'
+                    : 'platformTextarea.counterMessageCharactersOverTheLimitPlural'
+                ) | fdTranslate: { count: exceededCharCount }:'&nbsp;&nbsp;'
+            "
+        ></span>
+    </ng-container>
+    <ng-template #charactersRemaining>
+        <span
+            [innerHtml]="
+                (exceededCharCount === 1
+                    ? 'platformTextarea.counterMessageCharactersRemainingSingular'
+                    : 'platformTextarea.counterMessageCharactersRemainingPlural'
+                ) | fdTranslate: { count: exceededCharCount }:'&nbsp;&nbsp;'
+            "
+        ></span>
+    </ng-template>
+</div>

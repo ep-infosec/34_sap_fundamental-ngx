@@ -1,0 +1,57 @@
+<div
+    class="fd-file-uploader__container"
+    fdFileDragnDrop
+    [accept]="accept"
+    [maxFileSize]="maxFileSize"
+    [minFileSize]="minFileSize"
+    [dragndrop]="dragndrop"
+    [disabled]="disabled"
+    [multiple]="multiple"
+    (fileChanged)="handleDrop($event)"
+    (dragEntered)="onDragEnter.emit()"
+    (dragLeave)="onDragLeave.emit()"
+>
+    <input
+        #textInput
+        class="fd-input fd-file-uploader__input"
+        [class]="state ? ' is-' + state : ''"
+        aria-live="polite"
+        autocomplete="off"
+        type="text"
+        tabindex="0"
+        [id]="id"
+        [attr.aria-label]="ariaLabel"
+        [attr.aria-labelledby]="ariaLabelledBy"
+        [attr.aria-required]="required"
+        [class.fd-input--compact]="_contentDensityObserver.isCompact$ | async"
+        [title]="ariaLabel"
+        [placeholder]="placeholder"
+        [value]=""
+        [style.width]="width"
+        [hidden]="inputHidden"
+        [disabled]="disabled"
+        (click)="open()"
+        (keydown)="keyDownHandle($event)"
+    />
+
+    <button
+        fd-button
+        class="file-uploader__button"
+        [attr.aria-label]="buttonAriaLabel"
+        [label]="buttonLabel"
+        [disabled]="disabled"
+        (click)="open()"
+    ></button>
+    <ng-content select="[fd-form-control]"></ng-content>
+</div>
+
+<input
+    #fileInput
+    fdFileSelect
+    class="fd-file-uploader__hidden"
+    type="file"
+    [attr.accept]="accept"
+    [multiple]="multiple"
+    [disabled]="disabled"
+    (fileSelected)="selectHandler($event)"
+/>

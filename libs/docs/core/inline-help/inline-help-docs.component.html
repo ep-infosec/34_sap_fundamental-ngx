@@ -1,0 +1,56 @@
+<fd-docs-section-title id="basic" componentName="inline-help"> Inline Help </fd-docs-section-title>
+<description>
+    Inline help component can be placed anywhere, by adding directive <code>fd-inline-help</code> with text to display.
+</description>
+<component-example>
+    <p class="fd-centered-content">
+        <fd-inline-help-example></fd-inline-help-example>
+    </p>
+</component-example>
+<code-example [exampleFiles]="inlineHelpBasic"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="trigger-event" componentName="inline-help">
+    Inline Help with Changed Trigger Event
+</fd-docs-section-title>
+<description>
+    To change trigger event, same as in popover component, you need to pass events to <code>[triggers]</code> input.
+</description>
+<component-example>
+    <p class="fd-centered-content">
+        <fd-inline-help-trigger-example></fd-inline-help-trigger-example>
+    </p>
+</component-example>
+<code-example [exampleFiles]="inlineHelpTrigger"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="styled" componentName="inline-help">
+    Inline Help with Additional Class.
+</fd-docs-section-title>
+<description>
+    Additional class can be added to the body of inline help, by passing <code>additionalBodyClass</code> input.
+</description>
+<component-example>
+    <p class="fd-centered-content">
+        <fd-inline-help-styled-example></fd-inline-help-styled-example>
+    </p>
+</component-example>
+<code-example [exampleFiles]="inlineHelpStyles"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="template" componentName="inline-help">
+    Inline Help with Template Inside.
+</fd-docs-section-title>
+<description>
+    Instead of text, there is a way to place template inside inline help, by passing template to
+    <code>[fd-inline-help-template]</code> input.
+</description>
+<component-example>
+    <p class="fd-centered-content">
+        <fd-inline-help-template-example></fd-inline-help-template-example>
+    </p>
+</component-example>
+<code-example [exampleFiles]="inlineHelpTemplate"></code-example>

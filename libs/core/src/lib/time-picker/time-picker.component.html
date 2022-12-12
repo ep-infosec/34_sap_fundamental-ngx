@@ -1,0 +1,72 @@
+<fd-popover
+    [(isOpen)]="isOpen"
+    (isOpenChange)="_onOpenStateChanged($event)"
+    [triggers]="[]"
+    [disabled]="disabled"
+    [placement]="placement"
+    [closeOnEscapeKey]="true"
+    [focusAutoCapture]="false"
+    [focusTrapped]="true"
+>
+    <fd-popover-control>
+        <fd-input-group
+            #inputGroupComponent
+            (addOnButtonClicked)="_addOnButtonClicked()"
+            [button]="true"
+            [state]="state"
+            [disabled]="disabled"
+            [buttonFocusable]="buttonFocusable"
+            [isControl]="true"
+            [isExpanded]="isOpen"
+            [glyphAriaLabel]="timePickerButtonLabel || ('coreTimePicker.timePickerButtonLabel' | fdTranslate)"
+            glyph="fob-watch"
+        >
+            <input
+                type="text"
+                class="fd-input"
+                fd-input-group-input
+                [value]="_inputTimeValue"
+                (focusout)="_timeInputChanged($any($event.currentTarget).value)"
+                (keyup.enter)="_timeInputChanged($any($event.currentTarget).value)"
+                [disabled]="disabled"
+                [attr.id]="inputId"
+                [placeholder]="_placeholder"
+                [attr.aria-labelledby]="ariaLabelledBy"
+                [attr.aria-label]="timePickerInputLabel || ('coreTimePicker.timePickerInputLabel' | fdTranslate)"
+                [attr.aria-describedby]="_formValueStateMessageId"
+                [attr.aria-required]="required"
+            />
+        </fd-input-group>
+    </fd-popover-control>
+    <fd-popover-body>
+        <fd-form-message [embedded]="true" *ngIf="_message" [type]="state">
+            {{ _message }}
+        </fd-form-message>
+        <ng-content></ng-content>
+        <fd-time
+            *ngIf="isOpen"
+            [tablet]="tablet"
+            [disabled]="disabled"
+            [keepTwoDigits]="keepTwoDigitsTime"
+            [ngModel]="time"
+            (ngModelChange)="_timeComponentValueChanged($event)"
+            [meridian]="_meridian"
+            [displayHours]="_displayHours"
+            [displayMinutes]="_displayMinutes"
+            [displaySeconds]="_displaySeconds"
+            [spinnerButtons]="spinnerButtons"
+        ></fd-time>
+    </fd-popover-body>
+</fd-popover>
+
+<div style="display: none" aria-hidden="true">
+    <div [attr.id]="_formValueStateMessageId" aria-atomic="true" aria-live="assertive">
+        <ng-container [ngSwitch]="state">
+            <ng-container *ngSwitchCase="'success'">{{ valueStateSuccessMessage }}</ng-container>
+            <ng-container *ngSwitchCase="'information'">{{ valueStateInformationMessage }}</ng-container>
+            <ng-container *ngSwitchCase="'warning'">{{ valueStateWarningMessage }}</ng-container>
+            <ng-container *ngSwitchCase="'error'">{{ valueStateErrorMessage }}</ng-container>
+        </ng-container>
+        {{ _message }}
+    </div>
+</div>

@@ -1,0 +1,214 @@
+$block: fdp-approval-flow;
+
+$column-line-top-offset: 3rem;
+$column-line-top-offset--edit-mode: 4rem;
+
+$carousel-controls-height: 5.875rem;
+$carousel-controls-height--edit-mode: 7.875rem;
+
+@mixin fd-rtl {
+    @at-root {
+        [dir='rtl'] &,
+        &[dir='rtl'] {
+            @content;
+        }
+    }
+}
+
+.#{$block} {
+    &__watchers {
+        margin-bottom: 0.5rem;
+        padding-left: 0.5rem;
+
+        &-title {
+            font-size: 0.875em;
+            color: #6a6d70;
+            color: var(--sapContent_LabelColor, #6a6d70);
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        fd-avatar {
+            margin-right: 0.5rem;
+            cursor: pointer;
+
+            &:focus {
+                outline-offset: 0.0625rem;
+                outline-width: 0.0625rem;
+                outline-style: dotted;
+                outline-color: var(--sapContent_FocusColor, #0854a0);
+            }
+        }
+
+        & &-input-container {
+            width: 17.375rem;
+        }
+
+        @include fd-rtl() {
+            padding-right: 0.5rem;
+
+            fd-avatar {
+                margin-left: 0.5rem;
+                margin-right: 0;
+            }
+        }
+    }
+
+    &__container {
+        max-width: 100%;
+        position: relative;
+        padding: 0 0.5rem;
+
+        &--extra-padding-start {
+            padding-left: 2rem;
+        }
+
+        &--extra-padding-end {
+            padding-right: 2rem;
+        }
+
+        @include fd-rtl() {
+            &.#{$block}__container--extra-padding-start {
+                padding-left: 0.5rem;
+                padding-right: 2rem;
+            }
+
+            &.#{$block}__container--extra-padding-end {
+                padding-right: 0.5rem;
+                padding-left: 2rem;
+            }
+
+            &.#{$block}__container--extra-padding-start.#{$block}__container--extra-padding-end {
+                padding-right: 2rem;
+                padding-left: 2rem;
+            }
+        }
+    }
+
+    &__graph-container {
+        position: relative;
+        overflow: auto;
+        padding-top: 0.5rem;
+        padding-bottom: 2rem;
+        padding-left: 2rem;
+
+        &--multiple-root-nodes {
+            padding-left: 4rem;
+
+            @include fd-rtl() {
+                padding-right: 2rem;
+            }
+        }
+
+        &--multiple-final-nodes {
+            @include fd-rtl() {
+                padding-left: 0;
+            }
+        }
+    }
+
+    &-carousel-controls {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: calc(#{$carousel-controls-height} + 0.5rem);
+        padding-top: 0.5rem;
+        left: 0;
+
+        &--edit-mode {
+            height: calc(#{$carousel-controls-height--edit-mode} + 0.5rem);
+        }
+
+        &__button--prev-slide,
+        &__button--next-slide {
+            position: absolute;
+            border: none;
+            background: transparent;
+            color: #6a6d70;
+            color: var(--sapContent_LabelColor, #6a6d70);
+            display: flex;
+            justify-content: space-between;
+            width: 2rem;
+            align-items: center;
+            cursor: pointer;
+
+            fd-icon {
+                font-size: 0.875rem;
+                color: #0854a0;
+                color: var(--sapButton_IconColor, #0854a0);
+                position: relative;
+                top: 0.0625rem;
+            }
+        }
+
+        &__button--prev-slide {
+            left: 0;
+
+            @include fd-rtl() {
+                left: auto;
+                right: 0;
+            }
+        }
+
+        &__button--next-slide {
+            right: 0;
+
+            @include fd-rtl() {
+                left: 0;
+                right: auto;
+            }
+        }
+    }
+
+    &__graph {
+        display: flex;
+        align-items: flex-start;
+        position: relative;
+        left: 0;
+        transition: left 0.3s;
+
+        &-column {
+            margin-right: 4rem;
+            position: relative;
+
+            @include fd-rtl() {
+                &:first-child {
+                    margin-right: 2rem;
+                }
+            }
+        }
+
+        fdp-approval-flow-node + fdp-approval-flow-node:not(:last-child) {
+            margin-bottom: 1rem;
+        }
+
+        .#{$block}__graph-node-inner {
+            padding: 0;
+
+            .fd-grid-list__item-toolbar {
+                .fd-toolbar--extra-content {
+                    margin-left: auto;
+
+                    @include fd-rtl() {
+                        margin-left: 0;
+                        margin-right: auto;
+                    }
+                }
+
+                .fd-toolbar--actions {
+                    display: none;
+                }
+            }
+
+            &:not(&--edit) {
+                .fd-toolbar.fd-grid-list__item-toolbar {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+.cdk-overlay-container {
+    z-index: 1002 !important;
+}

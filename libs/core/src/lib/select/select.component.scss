@@ -1,0 +1,17 @@
+@use '@angular/cdk';
+@import 'fundamental-styles/dist/select';
+
+@include cdk.a11y-visually-hidden();
+
+.fd-select {
+    display: block;
+    max-width: 100%;
+
+    .fd-popover-custom {
+        min-width: 100%;
+    }
+
+    &--inline {
+        display: inline-block;
+    }
+}

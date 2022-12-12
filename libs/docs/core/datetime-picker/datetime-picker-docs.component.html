@@ -1,0 +1,113 @@
+<fd-docs-section-title id="simple" componentName="datetime-picker"> Simple Datetime Picker </fd-docs-section-title>
+<description>
+    The simplest form of the datetime picker. It makes use of ngModel to bind to the desired value. The alternative is
+    to use the date input combined with the dateChange output. There is also added <code>[placement]</code> attribute
+    which allows us to decide where popup should be shown
+</description>
+<description> The value for the input only changes the model on blur or an enter/return keystroke. </description>
+<description>
+    Some default options that belong to the <code>time</code> component such as <code>[displaySeconds]</code>,
+    <code>[displayMinutes]</code>, <code>[displayHours]</code> and <code>[meridian]</code> are based on the
+    <code>DateTimeFormats.display.dateTimeInput</code> options.
+    <br />
+    For example if Datetime picker display format option contains hours, minutes and day period info then default
+    options will be the next:
+    <code>[displaySeconds]="false"</code>, <code>[displayMinutes]="true"</code>, <code>[displayHours]="true"</code> and
+    <code>[meridian]="true"</code>. The listed above options are applied to the <code>time</code> component only (used
+    internally) and can be defined explicitly if needed.
+</description>
+<component-example>
+    <fd-datetime-example></fd-datetime-example>
+</component-example>
+<code-example [exampleFiles]="datetimePickerSingle"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="programmatic-change" componentName="datetime-picker">
+    Programmatic Change
+</fd-docs-section-title>
+<description>
+    It is possible to programmatically change the value of the date of the datetime picker and still conserve full
+    functionality.
+</description>
+<component-example>
+    <fd-datetime-program-example></fd-datetime-program-example>
+</component-example>
+<code-example [exampleFiles]="datetimeProgram"></code-example>
+
+<separator></separator>
+<fd-docs-section-title id="null" componentName="datetime-picker"> Null Validity </fd-docs-section-title>
+<description>
+    Null input values are considered valid by default. Use <code>[allowNull]="false"</code> to make them invalid.
+</description>
+<component-example>
+    <fd-date-time-picker-allow-null-example></fd-date-time-picker-allow-null-example>
+</component-example>
+<code-example [exampleFiles]="datetimePickerAllowNull"></code-example>
+
+<separator></separator>
+<fd-docs-section-title id="formatting" componentName="datetime-picker"> Formatting </fd-docs-section-title>
+<description>
+    Providing a custom format for the dates is possible through providing <code>DATE_TIME_FORMATS</code> config. Note
+    that when providing a custom format, the <code>[placeholder]</code> input should be set to match the new format as
+    well. The <code>dateTimeFormat</code> pipe can also be utilized to convert the date into a string according to the
+    provided format.
+</description>
+<component-example>
+    <fd-datetime-format-example></fd-datetime-format-example>
+</component-example>
+<code-example [exampleFiles]="datetimeFormat"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="disabled" componentName="datetime-picker"> Disabled State </fd-docs-section-title>
+<component-example>
+    <fd-datetime-disabled-example></fd-datetime-disabled-example>
+</component-example>
+<code-example [exampleFiles]="datetimeDisabled"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="reactive-form" componentName="datetime-picker">
+    Date Time Picker in Reactive Form
+</fd-docs-section-title>
+<description
+    >The date-time-picker component may also be used within Angular Reactive Forms. DateTime Picker follows Date Picker
+    with <code>[disableFunction]</code>
+</description>
+<component-example>
+    <fd-datetime-form-example></fd-datetime-form-example>
+</component-example>
+<code-example [exampleFiles]="datetimeForm"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="complex-i18n" componentName="datetime-picker"> i18n example. </fd-docs-section-title>
+<description>
+    <fd-datetime-important componentName="DatetimePicker"></fd-datetime-important>
+    <p>
+        In order to change the locale of the DatetimePicker, both the calendar will need to set its locale via the
+        <code>DatetimeAdapter</code> and the remaining pieces of the component (such as OK/Cancel buttons, "Hrs/Min/Sec"
+        labels) will need to be translated via the <code>fundamental-ngx/i18n</code> module. This is because the
+        <code>CalendarComponent</code> utilizes different localization strategies than the other components of the
+        library. Note the <code>TypeScript</code> example code below to see how this is done.
+    </p>
+</description>
+<component-example>
+    <fd-datetime-picker-complex-i18n-example></fd-datetime-picker-complex-i18n-example>
+</component-example>
+<code-example [exampleFiles]="datetimeI18nComplex"></code-example>
+
+<separator></separator>
+
+<fd-docs-section-title id="updates-on-blur" componentName="datetime-picker">
+    Date Time picker that updates it's value on blur.
+</fd-docs-section-title>
+<description>
+    Set <code>[processInputOnBlur]="true"</code> in order to move the processing of input value to whenever component
+    loses focus. You may also hit "enter" to apply the value
+</description>
+<component-example>
+    <fd-datetime-picker-update-on-blur-example></fd-datetime-picker-update-on-blur-example>
+</component-example>
+<code-example [exampleFiles]="dateTimePickerUpdateOnBlur"></code-example>

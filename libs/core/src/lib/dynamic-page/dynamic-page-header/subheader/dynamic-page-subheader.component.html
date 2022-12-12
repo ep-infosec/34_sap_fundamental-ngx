@@ -1,0 +1,44 @@
+<div class="fd-dynamic-page__collapsible-header-container">
+    <div
+        class="fd-dynamic-page__collapsible-header"
+        [attr.aria-label]="headerAriaLabel"
+        [attr.aria-hidden]="collapsed"
+        [attr.id]="collapsibleHeaderId"
+        role="region"
+        #headerContent
+    >
+        <ng-content></ng-content>
+    </div>
+    <div class="fd-dynamic-page__collapsible-header-visibility-container" #pincollapseContainer>
+        <ng-container *ngIf="collapsible">
+            <div class="fd-dynamic-page__collapsible-header-visibility-container--left-gradient"></div>
+            <div role="toolbar" class="fd-dynamic-page__collapsible-header-visibility-container--button-group">
+                <button
+                    fd-button
+                    class="fd-dynamic-page__collapse-button"
+                    aria-haspopup="true"
+                    [ariaLabel]="collapsed ? expandLabel : collapseLabel"
+                    [attr.title]="collapsed ? expandLabel : collapseLabel"
+                    [attr.aria-expanded]="!collapsed"
+                    [attr.aria-controls]="id"
+                    (click)="toggleCollapse()"
+                >
+                    <i *ngIf="!collapsed" class="sap-icon--slim-arrow-up"></i>
+                    <i *ngIf="collapsed" class="sap-icon--slim-arrow-down"></i>
+                </button>
+                <button
+                    fd-button
+                    class="fd-dynamic-page__pin-button"
+                    [ariaLabel]="_pinned ? unpinAriaLabel : pinAriaLabel"
+                    [attr.title]="_pinned ? unpinAriaLabel : pinAriaLabel"
+                    [toggled]="_pinned"
+                    (click)="togglePinned()"
+                    *ngIf="pinnable && !collapsed"
+                >
+                    <i class="sap-icon--pushpin-off"></i>
+                </button>
+            </div>
+            <div class="fd-dynamic-page__collapsible-header-visibility-container--right-gradient"></div>
+        </ng-container>
+    </div>
+</div>

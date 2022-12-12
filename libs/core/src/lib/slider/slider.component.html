@@ -1,0 +1,246 @@
+<div class="fd-slider__inner">
+    <ng-container *ngTemplateOutlet="_isRange ? rangeMode : singleMode"></ng-container>
+
+    <div class="fd-slider__track" (click)="onTrackClick($event)" #track>
+        <ng-container *ngTemplateOutlet="_isRange ? rangeModeTrack : singleModeTrack"></ng-container>
+    </div>
+
+    <div class="fd-slider__tick-wrapper">
+        <div class="fd-slider__ticks" (click)="onTrackClick($event)">
+            <ng-container *ngIf="showTicks">
+                <ng-container *ngFor="let tick of _tickMarks; index as i">
+                    <div
+                        class="fd-slider__tick"
+                        fd-slider-position
+                        [position]="tick.position || 0"
+                        [class.fd-slider__tick--in-range]="
+                            !hideProgressBar &&
+                            (_isRange
+                                ? tick.value >= _position[0] && tick.value <= _position[1]
+                                : tick.value <= _position)
+                        "
+                    ></div>
+                </ng-container>
+            </ng-container>
+        </div>
+
+        <div class="fd-slider__labels" *ngIf="showTicks && showTicksLabels">
+            <ng-container *ngFor="let tick of _tickMarks; index as i; last as last; first as first">
+                <div
+                    *ngIf="first || last || i % tickmarksBetweenLabels === 0"
+                    class="fd-slider__label"
+                    fd-slider-position
+                    [position]="tick.position || 0"
+                    [innerText]="tick.label"
+                ></div>
+            </ng-container>
+        </div>
+    </div>
+</div>
+
+<ng-template #singleModeTrack>
+    <div *ngIf="!hideProgressBar" class="fd-slider__track-range" [style.width.%]="_progress"></div>
+</ng-template>
+
+<ng-template #rangeModeTrack>
+    <div
+        *ngIf="!hideProgressBar"
+        class="fd-slider__track-range"
+        [style.width.%]="_rangeProgress"
+        fd-slider-position
+        [position]="_handle1Position < _handle2Position ? _handle1Position : _handle2Position"
+    ></div>
+</ng-template>
+
+<ng-template #singleMode>
+    <div
+        #handle
+        class="fd-slider__handle"
+        [class.fd-slider__handle--lg]="_contentDensityObserver.isCozy$ | async"
+        [attr.tabindex]="disabled ? -1 : 0"
+        role="slider"
+        [attr.aria-label]="
+            ariaLabel || 'coreSlider.singleMinMaxDetails' | fdTranslate: { min: minValue, max: maxValue }
+        "
+        [attr.aria-labelledby]="ariaLabelledBy"
+        [fdPopoverTrigger]="tooltipMode ? singleSliderPopover : null"
+        [attr.aria-valuemin]="'coreSlider.singleValueminDetails' | fdTranslate: { value: minValue }"
+        [attr.aria-valuemax]="'coreSlider.singleValuemaxDetails' | fdTranslate: { value: maxValue }"
+        [attr.aria-valuenow]="
+            _useSliderValuePrefix
+                ? ('coreSlider.singleValueNowDetails'
+                  | fdTranslate: { value: getValuenow(_position, _sliderValueTargets.SINGLE_SLIDER) })
+                : getValuenow(_position, _sliderValueTargets.SINGLE_SLIDER)
+        "
+        [attr.aria-valuetext]="
+            _useSliderValuePrefix
+                ? ('coreSlider.singleValueNowDetails'
+                  | fdTranslate: { value: getValuenow(_position, _sliderValueTargets.SINGLE_SLIDER) })
+                : getValuenow(_position, _sliderValueTargets.SINGLE_SLIDER)
+        "
+        fd-slider-position
+        [position]="_progress"
+        (mousedown)="onHandleClick($event); $event.stopPropagation()"
+        (focus)="_handleFocused$.next(true)"
+        (blur)="_handleFocused$.next(false)"
+        (keydown)="onKeyDown($event)"
+    ></div>
+
+    <fd-popover
+        #singleSliderPopover
+        [triggers]="[]"
+        [closeOnOutsideClick]="false"
+        [appendTo]="handle"
+        [disabled]="!tooltipMode"
+        class="fd-popover--slider"
+        additionalBodyClass="fd-slider--tooltip-popover"
+        placement="top"
+    >
+        <ng-container
+            *ngTemplateOutlet="
+                popoverInner;
+                context: { target: _sliderValueTargets.SINGLE_SLIDER, position: _position }
+            "
+        ></ng-container>
+    </fd-popover>
+</ng-template>
+
+<ng-template #rangeMode>
+    <div
+        #rangeHandle1
+        class="fd-slider__handle"
+        [class.fd-slider__handle--lg]="_contentDensityObserver.isCozy$ | async"
+        [attr.tabindex]="disabled ? -1 : 0"
+        role="slider"
+        [attr.aria-label]="
+            ariaLabel || 'coreSlider.multipleHandle1MinMaxDetails' | fdTranslate: { min: minValue, max: maxValue }
+        "
+        [attr.aria-labelledby]="ariaLabelledBy"
+        [fdPopoverTrigger]="tooltipMode ? rangeSliderPopover1 : null"
+        [attr.aria-valuemin]="'coreSlider.multipleHandle1ValueminDetails' | fdTranslate: { value: minValue }"
+        [attr.aria-valuemax]="'coreSlider.multipleHandle1ValuemaxDetails' | fdTranslate: { value: maxValue }"
+        [attr.aria-valuenow]="
+            _useSliderValuePrefix
+                ? ('coreSlider.multipleHandle1ValueNowDetails'
+                  | fdTranslate: { value: getValuenow(_handle1Value, _sliderValueTargets.RANGE_SLIDER1) })
+                : getValuenow(_handle1Value, _sliderValueTargets.RANGE_SLIDER1)
+        "
+        [attr.aria-valuetext]="
+            _useSliderValuePrefix
+                ? ('coreSlider.multipleHandle1ValueNowDetails'
+                  | fdTranslate: { value: getValuenow(_handle1Value, _sliderValueTargets.RANGE_SLIDER1) })
+                : getValuenow(_handle1Value, _sliderValueTargets.RANGE_SLIDER1)
+        "
+        fd-slider-position
+        [position]="_handle1Position"
+        (mousedown)="onHandleClick($event); $event.stopPropagation()"
+        (keydown)="onKeyDown($event)"
+        (focus)="_rangeHandle1Focused$.next(true)"
+        (blur)="_rangeHandle1Focused$.next(false)"
+    ></div>
+
+    <div
+        #rangeHandle2
+        class="fd-slider__handle"
+        [class.fd-slider__handle--lg]="_contentDensityObserver.isCozy$ | async"
+        [attr.tabindex]="disabled ? -1 : 0"
+        role="slider"
+        [attr.aria-label]="
+            ariaLabel || 'coreSlider.multipleHandle2MinMaxDetails' | fdTranslate: { min: minValue, max: maxValue }
+        "
+        [attr.aria-labelledby]="ariaLabelledBy"
+        [fdPopoverTrigger]="tooltipMode ? rangeSliderPopover2 : null"
+        [attr.aria-valuemin]="'coreSlider.multipleHandle2ValueminDetails' | fdTranslate: { value: minValue }"
+        [attr.aria-valuemax]="'coreSlider.multipleHandle2ValuemaxDetails' | fdTranslate: { value: maxValue }"
+        [attr.aria-valuenow]="
+            _useSliderValuePrefix
+                ? ('coreSlider.multipleHandle2ValueNowDetails'
+                  | fdTranslate: { value: getValuenow(_handle2Value, _sliderValueTargets.RANGE_SLIDER2) })
+                : getValuenow(_handle2Value, _sliderValueTargets.RANGE_SLIDER2)
+        "
+        [attr.aria-valuetext]="
+            _useSliderValuePrefix
+                ? ('coreSlider.multipleHandle2ValueNowDetails'
+                  | fdTranslate: { value: getValuenow(_handle2Value, _sliderValueTargets.RANGE_SLIDER2) })
+                : getValuenow(_handle2Value, _sliderValueTargets.RANGE_SLIDER2)
+        "
+        fd-slider-position
+        [position]="_handle2Position"
+        (mousedown)="onHandleClick($event); $event.stopPropagation()"
+        (keydown)="onKeyDown($event)"
+        (focus)="_rangeHandle2Focused$.next(true)"
+        (blur)="_rangeHandle2Focused$.next(false)"
+    ></div>
+
+    <fd-popover
+        #rangeSliderPopover1
+        [triggers]="[]"
+        [closeOnOutsideClick]="false"
+        [appendTo]="rangeHandle1"
+        [disabled]="!tooltipMode"
+        additionalBodyClass="fd-slider--tooltip-popover"
+        class="fd-popover--slider"
+        placement="top"
+    >
+        <ng-container
+            *ngTemplateOutlet="
+                popoverInner;
+                context: { target: _sliderValueTargets.RANGE_SLIDER1, position: _handle1Value }
+            "
+        ></ng-container>
+    </fd-popover>
+
+    <fd-popover
+        #rangeSliderPopover2
+        [triggers]="[]"
+        [closeOnOutsideClick]="false"
+        [appendTo]="rangeHandle2"
+        [disabled]="!tooltipMode"
+        additionalBodyClass="fd-slider--tooltip-popover"
+        class="fd-popover--slider"
+        placement="top"
+    >
+        <ng-container
+            *ngTemplateOutlet="
+                popoverInner;
+                context: { target: _sliderValueTargets.RANGE_SLIDER2, position: _handle2Value }
+            "
+        ></ng-container>
+    </fd-popover>
+</ng-template>
+
+<ng-template #popoverInner let-target="target" let-position="position">
+    <div
+        #sliderTooltipWrapper
+        class="fd-slider--tooltip-wrapper"
+        (click)="$event.stopPropagation()"
+        (keydown)="$event.stopPropagation()"
+        (mouseenter)="_popoverInputFieldHovered$.next(true)"
+        (mouseleave)="_popoverInputFieldHovered$.next(false)"
+    >
+        <div
+            *ngIf="(customValues && customValues.length > 0) || tooltipMode === 'readonly'"
+            class="fd-slider--tooltip"
+            [innerText]="
+                customValues && customValues.length > 0 ? customValues[position].label : _popoverValueRef[target]
+            "
+        ></div>
+
+        <input
+            #popoverInputField
+            tabindex="-1"
+            type="text"
+            [disabled]="disabled"
+            fd-only-digits
+            [decimal]="true"
+            [style.width.ch]="('' + _popoverValueRef[target]).length + 2"
+            class="fd-input fd-slider--tooltip {{ _popoverInputFieldClass }}"
+            *ngIf="customValues?.length === 0 && tooltipMode === 'editable'"
+            [(ngModel)]="_popoverValueRef[target]"
+            (blur)="_updateValueFromInput(popoverInputField.value, target)"
+            (keydown.enter)="_updateValueFromInput(popoverInputField.value, target)"
+            (focus)="_popoverInputFieldFocused$.next(true)"
+            (blur)="_popoverInputFieldFocused$.next(false)"
+        />
+    </div>
+</ng-template>

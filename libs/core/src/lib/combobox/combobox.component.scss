@@ -1,0 +1,25 @@
+.fd-combobox-custom-class {
+    display: inline-block;
+
+    .fd-combobox-shellbar-custom {
+        display: inline-block;
+    }
+}
+
+.fd-combobox-input-menu-overflow {
+    overflow: auto;
+}
+
+.fd-list__item.fd-combobox-list-item {
+    cursor: pointer;
+}
+
+.fd-combobox-full-width {
+    width: 100%;
+}
+
+.fd-combobox-count-list-results {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+}

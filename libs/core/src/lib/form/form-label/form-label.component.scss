@@ -1,0 +1,85 @@
+@import 'fundamental-styles/dist/form-label';
+
+$form-label-inline-help-placement-space: 0rem;
+$form-label-bottom-spacing: 0.125rem;
+
+@mixin rtl() {
+    @at-root {
+        [dir='rtl'] &,
+        &[dir='rtl'] {
+            @content;
+        }
+    }
+}
+
+@mixin left-placed() {
+    left: 0;
+    right: auto;
+}
+
+@mixin right-placed() {
+    right: 0;
+    left: auto;
+}
+
+.fd-form-label {
+    display: inline-block;
+
+    &__inline-help {
+        position: relative;
+        top: 0.125rem;
+    }
+}
+
+.fd-form-label__wrapper {
+    position: relative;
+    display: flex;
+    padding-bottom: $form-label-bottom-spacing;
+
+    &--align-end {
+        justify-content: flex-end;
+    }
+
+    span.fd-form-label {
+        margin-bottom: -$form-label-bottom-spacing;
+    }
+
+    &--inline-help {
+        display: flex;
+        padding-left: $form-label-inline-help-placement-space;
+
+        @include rtl() {
+            padding-left: 0;
+            padding-right: $form-label-inline-help-placement-space;
+        }
+
+        &--after {
+            padding-left: 0;
+            padding-right: $form-label-inline-help-placement-space;
+
+            @include rtl() {
+                padding-right: 0;
+                padding-left: $form-label-inline-help-placement-space;
+            }
+        }
+    }
+}
+
+.fd-form-label__help {
+    position: relative;
+    vertical-align: middle;
+
+    @include left-placed();
+
+    @include rtl() {
+        @include right-placed();
+    }
+
+    &--after {
+        @include right-placed();
+
+        @include rtl() {
+            @include left-placed();
+        }
+    }
+}

@@ -1,0 +1,81 @@
+import {
+    ContentChildren,
+    Directive,
+    ElementRef,
+    HostBinding,
+    Inject,
+    OnInit,
+    Optional,
+    QueryList
+} from '@angular/core';
+import { ObjectMarkerComponent } from '@fundamental-ngx/core/object-marker';
+import { ObjectStatusComponent } from '@fundamental-ngx/core/object-status';
+
+@Directive({
+    // eslint-disable-next-line @angular-eslint/directive-selector
+    selector: '[fd-upload-collection-thumbnail]',
+    host: { class: 'fd-upload-collection__thumbnail' }
+})
+export class UploadCollectionThumbnailDirective {}
+
+@Directive({
+    // eslint-disable-next-line @angular-eslint/directive-selector
+    selector: '[fd-upload-collection-title]',
+    host: { class: 'fd-upload-collection__title' }
+})
+export class UploadCollectionTitleDirective {
+    /** @hidden */
+    constructor(public elRef: ElementRef) {}
+}
+
+@Directive({
+    // eslint-disable-next-line @angular-eslint/directive-selector
+    selector: '[fd-upload-collection-description]',
+    host: { class: 'fd-upload-collection__description' }
+})
+export class UploadCollectionDescriptionDirective {}
+
+@Directive({
+    // eslint-disable-next-line @angular-eslint/directive-selector
+    selector: '[fd-upload-collection-text-separator], fd-upload-collection-text-separator',
+    host: { class: 'fd-upload-collection__text-separator' }
+})
+export class UploadCollectionTextSeparatorDirective {}
+
+@Directive({
+    // eslint-disable-next-line @angular-eslint/directive-selector
+    selector: '[fd-upload-collection-status-group]',
+    host: { class: 'fd-upload-collection__status-group' }
+})
+export class UploadCollectionStatusGroupDirective {}
+
+@Directive({
+    // eslint-disable-next-line @angular-eslint/directive-selector
+    selector: '[fd-upload-collection-status-item]',
+    host: { class: 'fd-upload-collection__status-group-item' }
+})
+export class UploadCollectionStatusItemDirective implements OnInit {
+    /** @hidden */
+    constructor(@Optional() @Inject(ObjectStatusComponent) private _objectStatus: ObjectStatusComponent) {}
+
+    /** @hidden */
+    ngOnInit(): void {
+        if (this._objectStatus) {
+            this._objectStatus._textClass += ' fd-upload-collection__status-group-item-text';
+        }
+    }
+}
+
+@Directive({
+    // eslint-disable-next-line @angular-eslint/directive-selector
+    selector: '[fd-upload-collection-title-container]'
+})
+export class UploadCollectionTitleContainerDirective {
+    /** @hidden */
+    @ContentChildren(ObjectMarkerComponent)
+    _objectMarkerComponents: QueryList<ObjectMarkerComponent>;
+
+    /** Whether or not this is in edit mode. */
+    @HostBinding('class.fd-upload-collection__title-container')
+    applyContainerClass = true;
+}

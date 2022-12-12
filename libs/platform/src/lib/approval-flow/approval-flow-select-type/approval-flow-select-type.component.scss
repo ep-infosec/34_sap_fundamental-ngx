@@ -1,0 +1,13 @@
+$block: fdp-approval-flow-select-type;
+
+.#{$block} {
+    .fd-dialog {
+        &__body {
+            width: 24rem;
+
+            .fd-form-item {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
